@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="aBoardWriteProc.do" method="post">
+	<form action="/aBoardWriteProc.do" method="post">
 		<table width="600" border="1">
 			<tr height="40">
 				<td align="center" width="150">제목</td>
 				<td width="450"><input type="text" name="title"></td>
 			</tr>
 			<tr height="40">
-				<td align="center" width="150">비밀 번호</td>
+				<td align="center" width="150">비밀번호</td>
 				<td width="450"><input type="password" name="password"></td>
 			</tr>
 			<tr height="40">
@@ -24,7 +24,7 @@
 			<tr height="40">
 				<td align="center" colspan="2">
 					<input type="submit" value="글쓰기">&nbsp;
-					<button onclick="location.href='aBoardList.do'">취소</button>
+					<button onclick="location.href='/aBoard/aBoardList.jsp'">취소</button>
 				</td>
 			</tr>
 		</table>

@@ -38,8 +38,8 @@ public class aBoardWriteProc extends HttpServlet {
 		
 		aBoardService se = new aBoardService();
 		se.insertBoard(vo);
-		
-		RequestDispatcher dis = request.getRequestDispatcher("aBoardList.do");
+		System.out.println(""+se.insertBoard(vo));
+		RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardList.jsp");
 		dis.forward(request, response);
 	}
 

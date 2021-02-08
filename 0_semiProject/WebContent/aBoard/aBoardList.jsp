@@ -34,11 +34,11 @@
 
 		<tr height="40">
 			<td align="center" colspan="4"><input type="button" value="답글쓰기"
-				onclick="location.href='aBoardReWrite.do?num=${vo.boardNum}&ref=${vo.ref}&re_stop=${vo.re_stop}&re_level=${vo.re_level}'">
+				onclick="location.href='/aBoardReWrite.do?num=${vo.boardNum}&ref=${vo.ref}&re_stop=${vo.re_stop}&re_level=${vo.re_level}'">
 				<input type="button" value="수정"
-				onclick="location.href='aBoardUpdate.do?num=${vo.boardNum}'">
+				onclick="location.href='/aBoardUpdate.do?num=${vo.boardNum}'">
 				<input type="button" value="삭제"
-				onclick="location.href='aBoardDelete.do?num=${vo.boardNum}'">
+				onclick="location.href='/aBoardDelete.do?num=${vo.boardNum}'">
 				<input type="button" value="목록" onclick="location.href='aBoardList.do'"></td>
 		</tr>
 	</table>

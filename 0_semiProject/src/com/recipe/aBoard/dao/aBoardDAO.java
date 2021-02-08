@@ -31,7 +31,7 @@ public class aBoardDAO {
 				ref = rs.getInt(1)+1;
 			}
 			
-			String sql = "INSERT INTO BOARD VALUES(A_BOARD.SEQ.NEXTVAL,?,?,?,?,?,?";
+			String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,0,sysdate,?,?,?,0)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getBoardTitle());
 			pstmt.setString(2, vo.getPassword());
@@ -39,6 +39,7 @@ public class aBoardDAO {
 			pstmt.setInt(4, ref);
 			pstmt.setInt(5, re_step);
 			pstmt.setInt(6, re_level);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
