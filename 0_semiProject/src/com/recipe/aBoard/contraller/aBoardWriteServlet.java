@@ -16,8 +16,8 @@ import com.recipe.aBoard.vo.aBoardVO;
 /**
  * Servlet implementation class aBoardWriteProc
  */
-@WebServlet("/aBoardWriteProc.do")
-public class aBoardWriteProc extends HttpServlet {
+@WebServlet("/aBoardWriteServlet.do")
+public class aBoardWriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -36,10 +36,10 @@ public class aBoardWriteProc extends HttpServlet {
 		vo.setPassword(request.getParameter("password"));
 		vo.setBoardContent(request.getParameter("content"));
 		
+		System.out.println("title"+vo.getBoardTitle()+"password"+vo.getPassword()+"content"+vo.getBoardContent());
 		aBoardService se = new aBoardService();
 		se.insertBoard(vo);
-		System.out.println(""+se.insertBoard(vo));
-		RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardList.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/aBoardList.do");
 		dis.forward(request, response);
 	}
 

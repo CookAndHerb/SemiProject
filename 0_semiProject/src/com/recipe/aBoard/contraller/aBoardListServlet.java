@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class aBoardList
  */
-@WebServlet("/aBoardList.do")
-public class aBoardList extends HttpServlet {
+@WebServlet("/aBoardListServlet.do")
+public class aBoardListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);

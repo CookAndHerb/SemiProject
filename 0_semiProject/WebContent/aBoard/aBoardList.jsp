@@ -7,40 +7,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table width = "600" border = "1">
+	<table width = "700" border = "1">
 		<tr height="40">
-			<td width="100" align="center">글번호</td>
-			<td width="180" align="left">${vo.boardNum}</td>
-			<td width="120" align="center">조회수</td>
-			<td width="180" align="center">${vo.readcount}</td>
+			<td align="right" colspan="5">
+			<input type="button" value="글쓰기" onclick="location.href='aBoardWriteForm.jsp'">
+			</td>
+		</tr>
+		<tr height="40">
+			<td width="50" align="center">번호</td>
+			<td width="320" align="center">제목</td>
+			<td width="150" align="center">작성일</td>
+			<td width="80" align="center">조회수</td>
 		</tr>
 
+		<% 
+			for(int i=0;i < vec.size();i++){
+				BoardBean bean = vec.get(i);// 벡터에 저장되어있는 빈 클래스 하나씩 추출 
+		%>
 		<tr height="40">
-			<td width="100" align="center">작성자</td>
-			<td width="180" align="left">익명</td>
-			<td width="120" align="center">작성일</td>
-			<td width="180" align="center">${vo.reg_date}</td>
+			<td width="50" align="center"><%=number--%></td>
+			<td width="320" align="left"><a
+				href="BoardInfo.jsp?num=<%=bean.getNum()%>"
+				style="text-decoration: none;"> <% 
+							if(bean.getRe_stop() > 1){
+								for(int j = 0 ;j<(bean.getRe_stop()-1)*5;j++){		
+						%> &nbsp; <% 		}
+							}
+						%> <%=bean.getSubject()%>
+			</a></td>
+			<td width="100" align="center"><%=bean.getWrite()%></td>
+			<td width="150" align="center"><%=bean.getReg_date()%></td>
+			<td width="80" align="center"><%=bean.getReadcount()%></td>
 		</tr>
-
-		<tr height="40">
-			<td width="120" align="center">제목</td>
-			<td colspan="3" align="center">${vo.boardTitle}</td>
-		</tr>
-
-		<tr height="80">
-			<td width="120" align="center">글 내용</td>
-			<td colspan="3" align="center">${vo.boardContent}</td>
-		</tr>
-
-		<tr height="40">
-			<td align="center" colspan="4"><input type="button" value="답글쓰기"
-				onclick="location.href='/aBoardReWrite.do?num=${vo.boardNum}&ref=${vo.ref}&re_stop=${vo.re_stop}&re_level=${vo.re_level}'">
-				<input type="button" value="수정"
-				onclick="location.href='/aBoardUpdate.do?num=${vo.boardNum}'">
-				<input type="button" value="삭제"
-				onclick="location.href='/aBoardDelete.do?num=${vo.boardNum}'">
-				<input type="button" value="목록" onclick="location.href='aBoardList.do'"></td>
-		</tr>
+		<%}%>
 	</table>
 </body>
 </html>

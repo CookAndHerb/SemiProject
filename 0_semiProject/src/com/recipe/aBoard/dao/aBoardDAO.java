@@ -11,13 +11,11 @@ import javax.sql.DataSource;
 import com.recipe.aBoard.vo.aBoardVO;
 import com.recipe.common.JDBCTemplate;
 
-public class aBoardDAO {
-	Connection conn;
-	PreparedStatement pstmt;
-	ResultSet rs;
+public class aBoardDAO {	
 	
 	public int insertBoard(Connection conn, aBoardVO vo) {
-		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		int ref = 0;
 		int re_step = 1;
 		int re_level = 1;
@@ -25,12 +23,11 @@ public class aBoardDAO {
 		
 		try {
 			String reSql = "SELECT MAX(REF) FROM A_BOARD";
-			pstmt = conn.prepareStatement("reSql");
+			pstmt = conn.prepareStatement(reSql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				ref = rs.getInt(1)+1;
 			}
-			
 			String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,0,sysdate,?,?,?,0)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getBoardTitle());
@@ -39,7 +36,7 @@ public class aBoardDAO {
 			pstmt.setInt(4, ref);
 			pstmt.setInt(5, re_step);
 			pstmt.setInt(6, re_level);
-			
+			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
