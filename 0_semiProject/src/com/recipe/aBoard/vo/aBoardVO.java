@@ -8,7 +8,8 @@ public class aBoardVO {
 	private String boardDate;
 	private String password;
 	private int ref;
-	private int re_level;
+	private int reStep;
+	private int reLevel;
 	private int readCount;
 	
 	public int getBoardNum() {
@@ -53,11 +54,17 @@ public class aBoardVO {
 	public void setRef(int ref) {
 		this.ref = ref;
 	}
-	public int getRe_level() {
-		return re_level;
+	public int getReStep() {
+		return reStep;
 	}
-	public void setRe_level(int re_level) {
-		this.re_level = re_level;
+	public void setReStep(int reStep) {
+		this.reStep = reStep;
+	}
+	public int getReLevel() {
+		return reLevel;
+	}
+	public void setReLevel(int reLevel) {
+		this.reLevel = reLevel;
 	}
 	public int getReadCount() {
 		return readCount;

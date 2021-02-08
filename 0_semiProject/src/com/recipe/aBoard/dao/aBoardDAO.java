@@ -3,6 +3,7 @@ package com.recipe.aBoard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,8 +18,8 @@ public class aBoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int ref = 0;
-		int re_step = 1;
-		int re_level = 1;
+		int reStep = 1;
+		int reLevel = 1;
 		int result = 0;
 		
 		try {
@@ -34,8 +35,8 @@ public class aBoardDAO {
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getBoardContent());
 			pstmt.setInt(4, ref);
-			pstmt.setInt(5, re_step);
-			pstmt.setInt(6, re_level);
+			pstmt.setInt(5, reStep);
+			pstmt.setInt(6, reLevel);
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -46,4 +47,69 @@ public class aBoardDAO {
 		}
 		return result;
 	}
+	
+	public int getAllCount(Connection conn) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			//쿼리 준비 
+			String sql ="SELECT COUNT(*) FROM A_BOARD";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return count;
+	}
+	
+	public Vector<aBoardVO> getAllBoard(Connection conn, int startRow, int endRow){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Vector<aBoardVO> v = new Vector<>();
+		
+		try {
+			String sql = "SELECT * FROM (SELECT A.*, ROWNUM rnum FROM(SELECT * FROM A_BOARD ORDER BY REF DESC, RE_STEP ASC)A)"
+					+ "WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				aBoardVO vo = new aBoardVO();
+				vo.setBoardNum(rs.getInt(1));
+				vo.setBoardTitle(rs.getString(2));
+				vo.setPassword(rs.getString(3));
+				vo.setBoardContent(rs.getString(4));
+				vo.setBoardHit(rs.getString(5));
+				vo.setBoardDate(rs.getDate(6).toString());
+				vo.setRef(rs.getInt(7));
+				vo.setReStep(rs.getInt(8));
+				vo.setReLevel(rs.getInt(9));
+				vo.setReadCount(rs.getInt(10));
+				
+				v.add(vo);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return v;
+	}
+	
 }
