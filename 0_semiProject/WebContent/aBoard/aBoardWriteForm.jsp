@@ -24,7 +24,7 @@
 			<tr height="40">
 				<td align="center" colspan="2">
 					<input type="submit" value="글쓰기">&nbsp;
-					<button onclick="location.href='/aBoard/aBoardInfo.jsp'">취소</button>
+					<button onclick="location.href='/aBoard/aBoardList.jsp'">취소</button>
 				</td>
 			</tr>
 		</table>
