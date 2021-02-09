@@ -28,7 +28,7 @@ public class aBoardListServlet extends HttpServlet {
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//화면에 보여질 게시글의 개수를 지정 
-		int pageSize=10;
+		int pageSize=5;
 				
 		//현재 보여지고 있는 페이지의 넘버 값을 읽음 
 		String pageNum = request.getParameter("pageNum");

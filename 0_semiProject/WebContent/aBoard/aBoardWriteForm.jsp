@@ -23,7 +23,7 @@
 			</tr>
 			<tr height="40">
 				<td align="center" colspan="2">
-					<input type="submit" value="글쓰기">&nbsp;
+					<input type="submit" value="확인">&nbsp;
 					<button onclick="location.href='/aBoard/aBoardList.jsp'">취소</button>
 				</td>
 			</tr>

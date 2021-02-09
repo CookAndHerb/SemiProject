@@ -13,10 +13,10 @@ import com.recipe.aBoard.vo.aBoardVO;
 import com.recipe.common.JDBCTemplate;
 
 public class aBoardDAO {	
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
 	public int insertBoard(Connection conn, aBoardVO vo) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		int ref = 0;
 		int reStep = 1;
 		int reLevel = 1;
@@ -50,8 +50,6 @@ public class aBoardDAO {
 	
 	public int getAllCount(Connection conn) {
 		int count = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
 		try {
 			//쿼리 준비 
@@ -74,8 +72,6 @@ public class aBoardDAO {
 	}
 	
 	public Vector<aBoardVO> getAllBoard(Connection conn, int startRow, int endRow){
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		Vector<aBoardVO> v = new Vector<>();
 		
 		try {
@@ -111,5 +107,91 @@ public class aBoardDAO {
 		}
 		return v;
 	}
+	
+	public aBoardVO getOneBoard(Connection conn, int num) {
+		aBoardVO vo = new aBoardVO();
+		
+		try {
+			String rsql = "UPDATE A_BOARD SET READCOUNT = READCOUNT+1 WHERE BOARD_NUM=?";
+			pstmt = conn.prepareStatement(rsql);
+			pstmt.setInt(1,num);
+			pstmt.executeUpdate();	
+				
+			String sql = "SELECT * FROM A_BOARD WHERE BOARD_NUM=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs= pstmt.executeQuery();
+				
+			if(rs.next()) {
+				vo.setBoardNum(rs.getInt(1));
+				vo.setBoardTitle(rs.getString(2));
+				vo.setPassword(rs.getString(3));
+				vo.setBoardContent(rs.getString(4));
+				vo.setBoardHit(rs.getString(5));
+				vo.setBoardDate(rs.getDate(6).toString());
+				vo.setRef(rs.getInt(7));
+				vo.setReStep(rs.getInt(8));
+				vo.setReLevel(rs.getInt(9));
+				vo.setReadCount(rs.getInt(10));
+			}
+
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(pstmt);
+			}
+			return vo;	
+	}
+	//update용 Delete시 하나의 게시글을 리턴
+	public aBoardVO getOneUpdateBoard(Connection conn, int num){	
+		aBoardVO vo = new aBoardVO();
+
+		try {
+			String sql = "SELECT * FROM A_BOARD WHERE BOARD_NUM=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				vo.setBoardNum(rs.getInt(1));
+				vo.setBoardTitle(rs.getString(2));
+				vo.setPassword(rs.getString(3));
+				vo.setBoardContent(rs.getString(4));
+				vo.setBoardHit(rs.getString(5));
+				vo.setBoardDate(rs.getDate(6).toString());
+				vo.setRef(rs.getInt(7));
+				vo.setReStep(rs.getInt(8));
+				vo.setReLevel(rs.getInt(9));
+				vo.setReadCount(rs.getInt(10));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return vo;
+	}
+	public int updateBoard(Connection conn,int num ,String title ,String content){
+		int result = 0;
+		try {		
+			String sql = "UPDATE A_BOARD SET BOARD_TITLE=?,BOARD_CONTENT=? WHERE BOARD_NUM=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,title);
+			pstmt.setString(2,content);
+			pstmt.setInt(3,num);
+			result = pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}  
+
 	
 }

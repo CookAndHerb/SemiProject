@@ -11,6 +11,7 @@ import com.recipe.common.JDBCTemplate;
 
 public class aBoardService {
 	aBoardDAO dao = new aBoardDAO();
+	aBoardVO vo = new aBoardVO();
 	
 	public int insertBoard(aBoardVO vo) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -45,5 +46,34 @@ public class aBoardService {
 		JDBCTemplate.close(conn);
 		
 		return v;
+	}
+	public aBoardVO getOneBoard(int num){
+		Connection conn = JDBCTemplate.getConnection();
+		aBoardVO vo = dao.getOneBoard(conn, num);
+		
+		JDBCTemplate.close(conn);
+		
+		return vo;
+	}
+	public aBoardVO getOneUpdateBoard(int num) {
+		Connection conn = JDBCTemplate.getConnection();
+		aBoardVO vo = dao.getOneUpdateBoard(conn, num);
+		
+		JDBCTemplate.close(conn);
+		
+		return vo;
+	}
+	public int updateBoard(int num ,String title ,String content) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateBoard(conn,num,title,content);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 }
