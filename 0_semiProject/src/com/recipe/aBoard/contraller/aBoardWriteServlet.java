@@ -38,6 +38,7 @@ public class aBoardWriteServlet extends HttpServlet {
 		
 		aBoardService se = new aBoardService();
 		se.insertBoard(vo);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("/aBoardListServlet.do");
 		dis.forward(request, response);
 	}

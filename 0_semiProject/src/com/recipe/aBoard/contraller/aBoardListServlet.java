@@ -14,9 +14,7 @@ import com.recipe.aBoard.dao.aBoardDAO;
 import com.recipe.aBoard.service.aBoardService;
 import com.recipe.aBoard.vo.aBoardVO;
 
-/**
- * Servlet implementation class aBoardList
- */
+
 @WebServlet("/aBoardListServlet.do")
 public class aBoardListServlet extends HttpServlet {
 	
