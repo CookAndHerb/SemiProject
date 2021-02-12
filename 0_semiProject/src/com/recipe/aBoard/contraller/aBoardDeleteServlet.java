@@ -31,8 +31,7 @@ public class aBoardDeleteServlet extends HttpServlet {
 		
 		if(pass.equals(password)){
 			int result = new aBoardService().deleteBoard(num);
-			
-			RequestDispatcher dis = request.getRequestDispatcher("/aBoardListServlet.do");
+			RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardDelete.jsp");
 			if(result>0) {
 				request.setAttribute("result", true);
 			}else {

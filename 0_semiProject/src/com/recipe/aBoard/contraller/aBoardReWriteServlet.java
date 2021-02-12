@@ -39,10 +39,12 @@ public class aBoardReWriteServlet extends HttpServlet {
 		System.out.println(vo.getRef());
 		System.out.println(vo.getReStep());
 		System.out.println(vo.getReLevel());
+		System.out.println("------------------------");
+		
 		int result = new aBoardService().reWriteBoard(vo);
 		
 		if(result > 0) {
-			RequestDispatcher dis = request.getRequestDispatcher("aBoardListServlet.do");
+			RequestDispatcher dis = request.getRequestDispatcher("/aBoardListServlet.do");
 			dis.forward(request ,response);
 		}else {
 			RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBordReWriteFail.jsp");

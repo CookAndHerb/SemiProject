@@ -15,7 +15,7 @@
 
 <title>Anonymous Forum</title>
 <script type="text/javascript">
-//검색 스크립트
+//검색
 	window.onload = function(){
 	document.getElementById("btnSearch").onclick=function(){
 		if(frm.keyword.value==""){
@@ -71,7 +71,10 @@
 			<tr>
 				<td>${number}</td>
 				<td>
-					<c:if test="${vo.reStep>1}">
+					<c:if test="${list.reStep>1}">
+						<c:forEach var="j" begin="1" end="${(list.reStep-1)*2}">
+							&nbsp;
+						</c:forEach>
 						[Re]
 					</c:if>
 					<a href="/aBoardInfoServlet.do?pageNum=${list.boardNum}">${list.boardTitle}</a>
@@ -161,10 +164,10 @@
 	</div>
 		<form action="/aBoardSearch.do?keyword="${keyword} name="frm" method="get" class="form-inline justify-content-center" role="form" style="margin:40px 0">
 			<div class="input-group mb-3">
-			<input type="text" name="keyword"class="form-control" placeholder="Search" placeholder="검색"/>
-			 <div class="input-group-append">
-			<input type="button" value="검색" id="btnSearch" class="btn btn-success" />
-			</div>
+				<input type="text" name="keyword"class="form-control" placeholder="Search" placeholder="검색"/>
+				 <div class="input-group-append">
+					<input type="button" value="검색" id="btnSearch" class="btn btn-success" />
+				</div>
 			</div>
 		</form>
 	<footer>

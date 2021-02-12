@@ -35,7 +35,7 @@ public class aBoardDAO {
 			if(rs.next()) {
 				ref = rs.getInt(1)+1;
 			}
-			String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,0,sysdate,?,?,?,0)";
+			String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,sysdate,?,?,?,0)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getBoardTitle());
 			pstmt.setString(2, vo.getPassword());
@@ -81,7 +81,9 @@ public class aBoardDAO {
 		ArrayList<aBoardVO> list = new ArrayList<>();
 		
 		try {
-			String sql = "Select * FROM (SELECT ROW_NUMBER() OVER(order by BOARD_NUM DESC) AS row_num, A_BOARD.* FROM A_BOARD) WHERE row_num between ? and ?";
+			String sql = "select * from (select A.* ,Rownum Rnum from" + 
+					"(select *from a_board order by ref desc ,re_step asc)A)" + 
+					"where Rnum >= ? and Rnum <= ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -90,16 +92,15 @@ public class aBoardDAO {
 			
 			while(rs.next()) {
 				aBoardVO vo = new aBoardVO();
-				vo.setBoardNum(rs.getInt(2));
-				vo.setBoardTitle(rs.getString(3));
-				vo.setPassword(rs.getString(4));
-				vo.setBoardContent(rs.getString(5));
-				vo.setBoardHit(rs.getString(6));
-				vo.setBoardDate(rs.getDate(7).toString());
-				vo.setRef(rs.getInt(8));
-				vo.setReStep(rs.getInt(9));
-				vo.setReLevel(rs.getInt(10));
-				vo.setReadCount(rs.getInt(11));
+				vo.setBoardNum(rs.getInt(1));
+				vo.setBoardTitle(rs.getString(2));
+				vo.setPassword(rs.getString(3));
+				vo.setBoardContent(rs.getString(4));
+				vo.setBoardDate(rs.getDate(5).toString());
+				vo.setRef(rs.getInt(6));
+				vo.setReStep(rs.getInt(7));
+				vo.setReLevel(rs.getInt(8));
+				vo.setReadCount(rs.getInt(9));
 				
 				list.add(vo);
 			}
@@ -133,12 +134,11 @@ public class aBoardDAO {
 				vo.setBoardTitle(rs.getString(2));
 				vo.setPassword(rs.getString(3));
 				vo.setBoardContent(rs.getString(4));
-				vo.setBoardHit(rs.getString(5));
-				vo.setBoardDate(rs.getDate(6).toString());
-				vo.setRef(rs.getInt(7));
-				vo.setReStep(rs.getInt(8));
-				vo.setReLevel(rs.getInt(9));
-				vo.setReadCount(rs.getInt(10));
+				vo.setBoardDate(rs.getDate(5).toString());
+				vo.setRef(rs.getInt(6));
+				vo.setReStep(rs.getInt(7));
+				vo.setReLevel(rs.getInt(8));
+				vo.setReadCount(rs.getInt(9));
 			}
 
 			}catch(Exception e) {
@@ -165,12 +165,11 @@ public class aBoardDAO {
 				vo.setBoardTitle(rs.getString(2));
 				vo.setPassword(rs.getString(3));
 				vo.setBoardContent(rs.getString(4));
-				vo.setBoardHit(rs.getString(5));
-				vo.setBoardDate(rs.getDate(6).toString());
-				vo.setRef(rs.getInt(7));
-				vo.setReStep(rs.getInt(8));
-				vo.setReLevel(rs.getInt(9));
-				vo.setReadCount(rs.getInt(10));
+				vo.setBoardDate(rs.getDate(5).toString());
+				vo.setRef(rs.getInt(6));
+				vo.setReStep(rs.getInt(7));
+				vo.setReLevel(rs.getInt(8));
+				vo.setReadCount(rs.getInt(9));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -234,12 +233,11 @@ public class aBoardDAO {
 				vo.setBoardTitle(rs.getString(3));
 				vo.setPassword(rs.getString(4));
 				vo.setBoardContent(rs.getString(5));
-				vo.setBoardHit(rs.getString(6));
-				vo.setBoardDate(rs.getDate(7).toString());
-				vo.setRef(rs.getInt(8));
-				vo.setReStep(rs.getInt(9));
-				vo.setReLevel(rs.getInt(10));
-				vo.setReadCount(rs.getInt(11));
+				vo.setBoardDate(rs.getDate(6).toString());
+				vo.setRef(rs.getInt(7));
+				vo.setReStep(rs.getInt(8));
+				vo.setReLevel(rs.getInt(9));
+				vo.setReadCount(rs.getInt(10));
 				
 				list.add(vo);
 			}
@@ -254,7 +252,6 @@ public class aBoardDAO {
 		return list;
 	}
 	public int getSearchBoardCount(Connection conn, String keyword) {
-		//키워드를 통해 검색된 게시물의 총 개수를 구하는 메소드
 		int postCount = 0;
 		
 		String sql = "SELECT COUNT(*) as count FROM A_BOARD WHERE board_title like ?";
@@ -282,27 +279,25 @@ public class aBoardDAO {
 		int reLevel = vo.getReLevel();
 
 		try {
-				String resql = "UPDATE A_BOARD SET RE_LEVEL=RE_LEVEL+1 WHERE REF=? AND RE_LEVEL > ?";
+				String resql = "UPDATE A_BOARD SET RE_LEVEL=RE_LEVEL+1 WHERE REF= ? AND RE_LEVEL > ?";
 				pstmt = conn.prepareStatement(resql);
 				pstmt.setInt(1 , ref);
 				pstmt.setInt(2 , reLevel);
 				pstmt.executeUpdate();
 				
-				String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,0,sysdate,?,?,?,0)";;
+				String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,sysdate,?,?,?,0)";
 				pstmt = conn.prepareStatement(sql);
-				//?에 값을 대입
 				pstmt.setString(1, vo.getBoardTitle());
 				pstmt.setString(2, vo.getPassword());
 				pstmt.setString(3, vo.getBoardContent());
-				pstmt.setInt(5, ref); 
-				pstmt.setInt(6, reStep+1);
-				pstmt.setInt(7, reLevel + 1);
-				result = pstmt.executeUpdate();	
+				pstmt.setInt(4, ref); 
+				pstmt.setInt(5, reStep+1);
+				pstmt.setInt(6, reLevel+1);
+				result = pstmt.executeUpdate();
 				
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return result;

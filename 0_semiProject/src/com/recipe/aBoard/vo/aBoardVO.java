@@ -4,7 +4,6 @@ public class aBoardVO {
 	private int boardNum;
 	private String boardTitle;
 	private String boardContent;
-	private String boardHit;
 	private String boardDate;
 	private String password;
 	private int ref;
@@ -29,12 +28,6 @@ public class aBoardVO {
 	}
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
-	}
-	public String getBoardHit() {
-		return boardHit;
-	}
-	public void setBoardHit(String boardHit) {
-		this.boardHit = boardHit;
 	}
 	public String getBoardDate() {
 		return boardDate;

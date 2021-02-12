@@ -85,7 +85,7 @@
 		</div>
 	</div>
 	<div class="btnGroup">
-		<input type="button" id="btn1" class="btn btn-success" value="답글쓰기" onclick="location.href='/aBoardReWriteRef.do?num=${vo.boardNum}&&ref=${vo.ref}&&reStep=${vo.reStep}&&reLevel=${vo.reLevel}'">
+		<input type="button" id="btn1" class="btn btn-success" value="답글쓰기" onclick="location.href='/aBoardReWriteRef.do?num=${vo.boardNum}&ref=${vo.ref}&reStep=${vo.reStep}&reLevel=${vo.reLevel}'">
 		<input type="button" id="btn2"class="btn btn-success" value="수정" onclick="location.href='/aBoardUpdateNum.do?num=${vo.boardNum}'">
 		<input type="button" id="btn3" class="btn btn-success" value="삭제" onclick="location.href='/aBoard/aBoardDeleteCheck.jsp?num=${vo.boardNum}'">
 		<input type="button" id="btn4" class="btn btn-success" value="목록" onclick="location.href='aBoardListServlet.do'">
