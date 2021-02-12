@@ -1,6 +1,7 @@
 package com.recipe.aBoard.contraller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -28,37 +29,39 @@ public class aBoardListServlet extends HttpServlet {
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//화면에 보여질 게시글의 개수를 지정 
-		int pageSize=5;
+		int pageSize=10;
 				
-		//현재 보여지고 있는 페이지의 넘버 값을 읽음 
+		//페이지 링크를 클릭한 번호 --> 현재 페이지 
 		String pageNum = request.getParameter("pageNum");
-				
-		//null 처리
+		
 		if(pageNum==null){
 			pageNum="1";
 		}
-				
+		// 연산용 현재 페이지
+		int currentPage = Integer.parseInt(pageNum);
+		
+		// 해당 페이지에서 시작할 레코드
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		
 		//전체 게시글의 갯수 
 		int count = 0;
-				
 		//jsp페이지 내에서 보여질 넘버링 숫자값을 저장하는 변수
 		int number = 0;
-				
-		//현재 보여지고 있는 페이지 문자를 숫자로 변환 
-		int currentPage = Integer.parseInt(pageNum);
-				
+		
 		aBoardService se = new aBoardService();
 		count = se.getAllCount();
 
-		// 현재 보여질 페이지 시작 번호를 설정
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-
-		// 최신글 10개를 기준으로 게시글 리턴 받아주는 메소드 호출
-		Vector<aBoardVO> v = se.getAllBoard(startRow, endRow);
+		ArrayList<aBoardVO> list = se.getAllBoard(startRow, endRow);
 		number = count - (currentPage - 1) * pageSize;
-
-		request.setAttribute("v", v);
+		
+//		System.out.println("startRow: "+startRow);
+//		System.out.println("endRow: "+endRow);
+//		System.out.println("number: "+number);
+//		System.out.println("list : "+list.size());
+//		System.out.println("---------------------------");
+		
+		request.setAttribute("list", list);
 		request.setAttribute("number", number);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("count", count);

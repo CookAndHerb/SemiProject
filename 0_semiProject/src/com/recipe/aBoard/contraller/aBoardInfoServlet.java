@@ -28,7 +28,7 @@ public class aBoardInfoServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		int num = Integer.parseInt(request.getParameter("num").trim());
+		int num = Integer.parseInt(request.getParameter("pageNum").trim());
 		
 		aBoardService se = new aBoardService();
 		aBoardVO vo = se.getOneBoard(num);

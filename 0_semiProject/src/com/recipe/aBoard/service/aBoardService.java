@@ -1,6 +1,7 @@
 package com.recipe.aBoard.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -39,13 +40,14 @@ public class aBoardService {
 		
 		return result;
 	}
-	public Vector<aBoardVO> getAllBoard(int startRow, int endRow){
+	public ArrayList<aBoardVO> getAllBoard(int startRow, int endRow){
 		Connection conn = JDBCTemplate.getConnection();
-		Vector<aBoardVO> v = dao.getAllBoard(conn, startRow, endRow);
+		ArrayList<aBoardVO> list = dao.getAllBoard(conn, startRow, endRow);
+//		System.out.println("service list: "+list.size());
 		
 		JDBCTemplate.close(conn);
 		
-		return v;
+		return list;
 	}
 	public aBoardVO getOneBoard(int num){
 		Connection conn = JDBCTemplate.getConnection();
@@ -76,4 +78,40 @@ public class aBoardService {
 		
 		return result;
 	}
+	public int deleteBoard(int num) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteBoard(conn, num);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	public ArrayList<aBoardVO> getSearchBoard(String keyword, int startRow, int endRow){
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<aBoardVO> list = dao.getSearchBoard(conn, keyword, startRow, endRow);
+//		System.out.println("service list: "+list.size());
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+	public int getSearchBoardCount(String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.getSearchBoardCount(conn, keyword);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	
 }

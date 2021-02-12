@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert("글 작성 실패");
-		location.replace('/aBoard/aBoardWriteForm.jsp');
+		history.back(-1);
 	</script>
 </body>
 </html>

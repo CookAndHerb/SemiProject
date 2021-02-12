@@ -3,31 +3,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="${path}/ckeditor/ckeditor.js"></script>
+
+
+<title>글 작성 페이지</title>
+<style>
+	.btn_group{
+		display: flex;
+  		justify-content: center;
+	}
+	.form-group{
+		display: flex;
+  		justify-content: center;
+	}
+	
+</style>
 </head>
 <body>
-	<form action="/aBoardWriteServlet.do" method="post">
-		<table width="600" border="1">
-			<tr height="40">
-				<td align="center" width="150">제목</td>
-				<td width="450"><input type="text" name="title"></td>
-			</tr>
-			<tr height="40">
-				<td align="center" width="150">비밀번호</td>
-				<td width="450"><input type="password" name="password"></td>
-			</tr>
-			<tr height="40">
-				<td align="center" width="150">글 내용</td>
-				<td width="450"><textarea rows="10" cols="60" name="content"></textarea></td>
-			</tr>
-			<tr height="40">
-				<td align="center" colspan="2">
-					<input type="submit" value="확인">&nbsp;
-					<button onclick="location.href='/aBoard/aBoardList.jsp'">취소</button>
-				</td>
-			</tr>
-		</table>
+<header id="top_section">
+		<%@ include file="/template/top.jsp" %>
+</header>
+	<form action="/aBoardWriteServlet.do" method="post" class="justify-content-center">
+		<div class="row justify-content-md-center">
+            <div class="col-sm-6">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <label class="input-group-text px-4">제목</label>
+                </div>            
+                  <input type="text" name="title" class="form-control">              
+                </div>
+            </div>
+        </div>
+  		
+  		<div class="row justify-content-md-center">
+            <div class="col-sm-6">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <label class="input-group-text px-2">비밀번호</label>
+                </div>            
+                  <input type="password" name="password" class="form-control">              
+                </div>
+            </div>
+        </div>
+ 		
+		<div class="form-group">
+			<textarea id="editor1" name="content" rows="15" cols="80"></textarea>
+			<script> // Replace the <textarea id="editor1"> 
+    		// 옵션을 부여하고, editor1 이라는 녀석의 아이디를 에디터로 변환합니다.
+    		CKEDITOR.config.width = 1000; // 넓이 
+    		CKEDITOR.config.height = 600; // 높이 // 퍼센트로 가능합니다. 
+    		CKEDITOR.replace( 'editor1' , {
+    		}); 
+    		</script>
+		</div>
+   		 
+		<div class="btn_group mb-5">
+			<input type="submit" value="확인" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;
+			<button onclick="location.href='/aBoard/aBoardList.jsp'" class="btn btn-success">취소</button>
+		</div>
 	</form>
 </body>
 </html>

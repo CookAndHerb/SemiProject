@@ -18,14 +18,14 @@ import com.recipe.aBoard.vo.aBoardVO;
 @WebServlet("/aBoardUpdateNum.do")
 public class aBoardUpdateNumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqPro(request ,response);
+		execute(request ,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqPro(request ,response);
+		execute(request ,response);
 	}
 	
-	protected void reqPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		request.setCharacterEncoding("UTF-8");
 		
 		int num = Integer.parseInt(request.getParameter("num").trim());

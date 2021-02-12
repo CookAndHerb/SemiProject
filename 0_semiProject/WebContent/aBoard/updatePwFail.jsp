@@ -8,12 +8,12 @@
 </head>
 <body>
 <%
-	int num = (int)request.getAttribute("num");
+	int num = Integer.parseInt(request.getParameter("num").trim());
 %>
 
 <script>
 	alert("비밀번호가 맞지 않습니다.");
-	location.replace("/aBoardUpdate.do?num=<%=num%>");
+	history.back(-1);
 </script>
 </body>
 </html>

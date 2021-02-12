@@ -3,6 +3,8 @@ package com.recipe.aBoard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -17,12 +19,16 @@ public class aBoardDAO {
 	ResultSet rs = null;
 	
 	public int insertBoard(Connection conn, aBoardVO vo) {
-		int ref = 0;
+		int ref = 1;
 		int reStep = 1;
 		int reLevel = 1;
 		int result = 0;
+		System.out.println(vo.getBoardTitle());
+		System.out.println(vo.getPassword());
+		System.out.println(vo.getBoardContent());
 		
 		try {
+			
 			String reSql = "SELECT MAX(REF) FROM A_BOARD";
 			pstmt = conn.prepareStatement(reSql);
 			rs = pstmt.executeQuery();
@@ -71,12 +77,11 @@ public class aBoardDAO {
 		return count;
 	}
 	
-	public Vector<aBoardVO> getAllBoard(Connection conn, int startRow, int endRow){
-		Vector<aBoardVO> v = new Vector<>();
+	public ArrayList<aBoardVO> getAllBoard(Connection conn, int startRow, int endRow){
+		ArrayList<aBoardVO> list = new ArrayList<>();
 		
 		try {
-			String sql = "SELECT * FROM (SELECT A.*, ROWNUM rnum FROM(SELECT * FROM A_BOARD ORDER BY REF DESC, RE_STEP ASC)A)"
-					+ "WHERE rnum >= ? AND rnum <= ?";
+			String sql = "Select * FROM (SELECT ROW_NUMBER() OVER(order by BOARD_NUM DESC) AS row_num, A_BOARD.* FROM A_BOARD) WHERE row_num between ? and ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -85,18 +90,18 @@ public class aBoardDAO {
 			
 			while(rs.next()) {
 				aBoardVO vo = new aBoardVO();
-				vo.setBoardNum(rs.getInt(1));
-				vo.setBoardTitle(rs.getString(2));
-				vo.setPassword(rs.getString(3));
-				vo.setBoardContent(rs.getString(4));
-				vo.setBoardHit(rs.getString(5));
-				vo.setBoardDate(rs.getDate(6).toString());
-				vo.setRef(rs.getInt(7));
-				vo.setReStep(rs.getInt(8));
-				vo.setReLevel(rs.getInt(9));
-				vo.setReadCount(rs.getInt(10));
+				vo.setBoardNum(rs.getInt(2));
+				vo.setBoardTitle(rs.getString(3));
+				vo.setPassword(rs.getString(4));
+				vo.setBoardContent(rs.getString(5));
+				vo.setBoardHit(rs.getString(6));
+				vo.setBoardDate(rs.getDate(7).toString());
+				vo.setRef(rs.getInt(8));
+				vo.setReStep(rs.getInt(9));
+				vo.setReLevel(rs.getInt(10));
+				vo.setReadCount(rs.getInt(11));
 				
-				v.add(vo);
+				list.add(vo);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -105,7 +110,8 @@ public class aBoardDAO {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
-		return v;
+//		System.out.println("dao: "+list.size());
+		return list;
 	}
 	
 	public aBoardVO getOneBoard(Connection conn, int num) {
@@ -143,7 +149,7 @@ public class aBoardDAO {
 			}
 			return vo;	
 	}
-	//update용 Delete시 하나의 게시글을 리턴
+	//update, Delete시 하나의 게시글을 리턴
 	public aBoardVO getOneUpdateBoard(Connection conn, int num){	
 		aBoardVO vo = new aBoardVO();
 
@@ -192,6 +198,81 @@ public class aBoardDAO {
 		}
 		return result;
 	}  
-
+	public int deleteBoard(Connection conn, int num){
+		int result = 0;
+		try {		
+			String sql = "DELETE FROM A_BOARD WHERE BOARD_NUM=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			result = pstmt.executeUpdate();
+				
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<aBoardVO> getSearchBoard(Connection conn, String keyword, int startRow, int endRow){
+		ArrayList<aBoardVO> list = new ArrayList<>();
+		System.out.println("keyword: "+keyword);
+		
+		try {
+			String sql = "Select * FROM (SELECT ROW_NUMBER() OVER(order by BOARD_NUM DESC) AS row_num, A_BOARD.* " + 
+					"FROM A_BOARD where BOARD_TITLE like ?) WHERE row_num between ? and ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				aBoardVO vo = new aBoardVO();
+				vo.setBoardNum(rs.getInt(2));
+				vo.setBoardTitle(rs.getString(3));
+				vo.setPassword(rs.getString(4));
+				vo.setBoardContent(rs.getString(5));
+				vo.setBoardHit(rs.getString(6));
+				vo.setBoardDate(rs.getDate(7).toString());
+				vo.setRef(rs.getInt(8));
+				vo.setReStep(rs.getInt(9));
+				vo.setReLevel(rs.getInt(10));
+				vo.setReadCount(rs.getInt(11));
+				
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+//		System.out.println("dao: "+list.size());
+		return list;
+	}
+	public int getSearchBoardCount(Connection conn, String keyword) {
+		//키워드를 통해 검색된 게시물의 총 개수를 구하는 메소드
+		int postCount = 0;
+		
+		String sql = "SELECT COUNT(*) as count FROM A_BOARD WHERE board_title like ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			rs = pstmt.executeQuery();
+			rs.next();
+			postCount = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return postCount;
+	}
 	
 }

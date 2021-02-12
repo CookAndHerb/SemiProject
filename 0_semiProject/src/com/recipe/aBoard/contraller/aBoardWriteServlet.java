@@ -35,6 +35,10 @@ public class aBoardWriteServlet extends HttpServlet {
 		vo.setBoardTitle(request.getParameter("title"));
 		vo.setPassword(request.getParameter("password"));
 		vo.setBoardContent(request.getParameter("content"));
+		
+		System.out.println(vo.getBoardTitle());
+		System.out.println(vo.getPassword());
+		System.out.println(vo.getBoardContent());
 		int result = new aBoardService().insertBoard(vo);
 		
 		if(result>0) {
