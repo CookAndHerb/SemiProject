@@ -70,7 +70,12 @@
 			<c:forEach var="list" items="${list}">
 			<tr>
 				<td>${number}</td>
-				<td><a href="/aBoardInfoServlet.do?pageNum=${list.boardNum}">${list.boardTitle}</a></td>
+				<td>
+					<c:if test="${vo.reStep>1}">
+						[Re]
+					</c:if>
+					<a href="/aBoardInfoServlet.do?pageNum=${list.boardNum}">${list.boardTitle}</a>
+				</td>
 				<td>${list.boardDate}</td>
 				<td>${list.readCount}</td>
 			</tr>

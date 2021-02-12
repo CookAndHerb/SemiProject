@@ -43,7 +43,7 @@ public class aBoardService {
 	public ArrayList<aBoardVO> getAllBoard(int startRow, int endRow){
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<aBoardVO> list = dao.getAllBoard(conn, startRow, endRow);
-//		System.out.println("service list: "+list.size());
+		System.out.println("service list: "+list.size());
 		
 		JDBCTemplate.close(conn);
 		
@@ -103,6 +103,19 @@ public class aBoardService {
 	public int getSearchBoardCount(String keyword) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.getSearchBoardCount(conn, keyword);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	public int reWriteBoard(aBoardVO vo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.reWriteBoard(conn, vo);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);

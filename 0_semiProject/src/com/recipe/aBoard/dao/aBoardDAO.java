@@ -274,5 +274,38 @@ public class aBoardDAO {
 		}
 		return postCount;
 	}
+	public int reWriteBoard(Connection conn, aBoardVO vo){
+		
+		int result = 0;
+		int ref =vo.getRef();
+		int reStep = vo.getReStep();
+		int reLevel = vo.getReLevel();
+
+		try {
+				String resql = "UPDATE A_BOARD SET RE_LEVEL=RE_LEVEL+1 WHERE REF=? AND RE_LEVEL > ?";
+				pstmt = conn.prepareStatement(resql);
+				pstmt.setInt(1 , ref);
+				pstmt.setInt(2 , reLevel);
+				pstmt.executeUpdate();
+				
+				String sql = "INSERT INTO A_BOARD VALUES(A_BOARD_SEQ.NEXTVAL,?,?,?,0,sysdate,?,?,?,0)";;
+				pstmt = conn.prepareStatement(sql);
+				//?에 값을 대입
+				pstmt.setString(1, vo.getBoardTitle());
+				pstmt.setString(2, vo.getPassword());
+				pstmt.setString(3, vo.getBoardContent());
+				pstmt.setInt(5, ref); 
+				pstmt.setInt(6, reStep+1);
+				pstmt.setInt(7, reLevel + 1);
+				result = pstmt.executeUpdate();	
+				
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 	
 }

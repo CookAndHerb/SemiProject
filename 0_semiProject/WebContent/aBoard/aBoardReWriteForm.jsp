@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,7 +12,7 @@
 <script src="${path}/ckeditor/ckeditor.js"></script>
 
 
-<title>글 작성 페이지</title>
+<title>답글 작성 페이지</title>
 <style>
 	.btn_group{
 		display: flex;
@@ -36,7 +37,7 @@
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
-	<form action="/aBoardWriteServlet.do" method="post" class="justify-content-center">
+	<form action="/aBoardReWrite.do" method="post" class="justify-content-center">
 		<div class="row justify-content-md-center">
             <div class="col-sm-6">
             <div class="input-group mb-2">
@@ -74,6 +75,9 @@
 			<input type="submit" value="확인" id="Confirm_btn" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;
 			<button onclick="location.href='/aBoard/aBoardList.jsp'" id="cancel_btn"class="btn btn-success">취소</button>
 		</div>
+		<input type="hidden" name ="ref" value="${ref}">
+		<input type="hidden" name ="reStep" value="${reStep}">
+		<input type="hidden" name ="reLevel" value="${reLevel}">
 	</form>
 </body>
 </html>
