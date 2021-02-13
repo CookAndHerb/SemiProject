@@ -49,7 +49,7 @@
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
-
+<h2 class="board_title" align="center" style="margin-top: 20px;">Cook Q&A</h2>
 <div class="container">
 <div style ="margin: 15px 25px 15px 0px;" align="right" >
 	<button onclick="location.href ='/aBoard/aBoardWriteForm.jsp'" class="btn btn-success" id="write_btn">글쓰기</button>
