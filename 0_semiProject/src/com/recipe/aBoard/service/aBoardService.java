@@ -117,6 +117,7 @@ public class aBoardService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.reWriteBoard(conn, vo);
 		
+		System.out.println("답글 결과:"+result);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {
