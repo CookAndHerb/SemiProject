@@ -35,6 +35,7 @@
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
+<h2 class="board_title" align="center" style="margin: 20px 0px 30px 0;">Cook Q&A</h2>
 <form action="/aBoardUpdate.do" method ="post">
 	<div class="row justify-content-md-center">
             <div class="col-sm-6">

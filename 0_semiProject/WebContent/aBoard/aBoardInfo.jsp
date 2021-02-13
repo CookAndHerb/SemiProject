@@ -76,7 +76,7 @@
 
 
 <div class="container">
-	<h2 class="board_title" align="center">cook Q&A</h2>
+<h2 class="board_title" align="center" style="margin-top: 20px;">Cook Q&A</h2>
 	<div id="board_View" style="width:100%">
 		<div class="board_view_subject" style="border-top: 1px solid #222;">
 			<p class="board_view_subject_left">${vo.boardTitle}</p>

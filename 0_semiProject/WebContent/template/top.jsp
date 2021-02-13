@@ -111,7 +111,7 @@
                                     </li>
                                     <li><a href="/resources/single-post.html">Notice</a></li>
                                     <li><a href="/resources/contact.html">Cook & Talk</a></li>
-                                    <li><a href="/aBoardListServlet.do">비회원 자유 게시판</a></li>
+                                    <li><a href="/aBoardListServlet.do">Cook Q&A</a></li>
                                 </ul>
 
                                 <!-- Login/Register -->

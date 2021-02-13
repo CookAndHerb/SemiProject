@@ -274,7 +274,7 @@ public class aBoardDAO {
 	public int reWriteBoard(Connection conn, aBoardVO vo){
 		
 		int result = 0;
-		int ref =vo.getRef();
+		int ref = vo.getRef();
 		int reStep = vo.getReStep();
 		int reLevel = vo.getReLevel();
 
