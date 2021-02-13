@@ -67,7 +67,7 @@ public class RboardSearchServlet extends HttpServlet {
 		int currentPage;
 		// 현재 페이지 값을 가지고 있는 변수, 이 변수는 페이지가 변경되면 변경된 페이지 값을 가지고 있어야 한다.
 				
-		int recordCountPerPage = 5; // 한 페이지당 몇 개의 게시물이 보이게 될 것인지
+		int recordCountPerPage = 9 ; // 한 페이지당 몇 개의 게시물이 보이게 될 것인지
 				
 		// 게시판
 		if(request.getParameter("currentPage") == null) { 
