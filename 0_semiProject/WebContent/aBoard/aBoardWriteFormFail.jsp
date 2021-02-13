@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>cook Q&A 글 작성 실패</title>
 </head>
 <body>
 	<script>

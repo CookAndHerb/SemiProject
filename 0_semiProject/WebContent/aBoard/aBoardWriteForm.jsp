@@ -11,7 +11,7 @@
 <script src="${path}/ckeditor/ckeditor.js"></script>
 
 
-<title>글 작성 페이지</title>
+<title>cook Q&A 글 작성 페이지</title>
 <style>
 	.btn_group{
 		display: flex;

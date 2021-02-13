@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>cook Q&A 비밀번호</title>
 </head>
 <body>
 <%

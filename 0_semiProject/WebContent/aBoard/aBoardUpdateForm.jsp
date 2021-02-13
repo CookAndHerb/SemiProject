@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="${path}/ckeditor/ckeditor.js"></script>
   
-<title>글 수정 페이지</title>
+<title>cook Q&A 글 수정 페이지</title>
 <style>
 	.form-group{
 		display: flex;

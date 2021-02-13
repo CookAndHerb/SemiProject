@@ -46,8 +46,8 @@
 		padding: 40px 0 40px 0;
 	}
 	.btnGroup{
-		float: right;
-		padding: 16px 0 16px 0;
+		padding: 20px 0 40px 0;
+		margin-left: 70%;
 	}
 	#btn1{
 		background-color:  #b0c364;
@@ -66,15 +66,17 @@
     	border-color:  #b0c364;
 	}
 </style>
-<title>상세 페이지</title>
+<title>cook Q&A 상세 페이지</title>
 </head>
 
 <body>
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
+
+
 <div class="container">
-	<h2 class="board_title" align="center">비회원 자유 게시판</h2>
+	<h2 class="board_title" align="center">cook Q&A</h2>
 	<div id="board_View" style="width:100%">
 		<div class="board_view_subject" style="border-top: 1px solid #222;">
 			<p class="board_view_subject_left">${vo.boardTitle}</p>
@@ -91,5 +93,8 @@
 		<input type="button" id="btn4" class="btn btn-success" value="목록" onclick="location.href='aBoardListServlet.do'">
 	</div>
 </div>
+<footer>
+	<%@ include file="/template/bottom.jsp"%>
+</footer>
 </body>
 </html>
