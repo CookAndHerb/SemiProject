@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.css">
 <meta charset="UTF-8">
 <title>CookCookRecipe</title>
 </head>

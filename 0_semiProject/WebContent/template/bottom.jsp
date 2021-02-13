@@ -122,19 +122,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
-    <!-- ##### Footer Area Start ##### -->
+<!--     ##### Footer Area Start #####
 
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
+    ##### All Javascript Script #####
+    jQuery-2.2.4 js
     <script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
+    Popper js
     <script src="/resources/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
+    Bootstrap js
     <script src="/resources/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
+    All Plugins js
     <script src="/resources/js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="/resources/js/active.js"></script>
+    Active js
+    <script src="/resources/js/active.js"></script> -->
 </body>
 
 </html>
