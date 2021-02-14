@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.recipe.mBoard.service.mBoardService;
 import com.recipe.mBoard.model.mBoardVO;
 
-@WebServlet("/aBoardDeleteNo.do")
+@WebServlet("/mBoardDeleteNo.do")
 public class mBoardDeleteNo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request ,response);
