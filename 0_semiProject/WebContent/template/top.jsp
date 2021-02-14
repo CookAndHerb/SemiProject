@@ -122,7 +122,7 @@
 										<a href="/logout.do">Logout</a><br>
 									</c:when>
 									<c:otherwise>
-	                                    <a href="/views/login.jsp">Login</a> &nbsp;&nbsp;
+	                                    <a href="/memberLogin.do">Login</a> &nbsp;&nbsp;
 	                                    <a href="/views/memberJoin.jsp">Register</a>
 	                                </c:otherwise>
 	                            </c:choose>
