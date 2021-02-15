@@ -24,6 +24,15 @@
 		color: black;
 		font-size: 18px;
 	}
+	#loginBtn{
+		color: #b0c364;
+		border: 1px solid #b0c364;
+		background: white;
+	}
+	#pwBtn{
+		background: #b0c364;
+		color: white;
+	}
 </style>
 </head>
 <body>
@@ -37,8 +46,8 @@
  			<div class="login">ID 찾기 결과</div>
             <hr>
            <p align="center"> 회원님의 ID는 [  <b class="id">${userId}</b> ]입니다. </p>
-         	 <button type="button" class="btn btn-light btn-block " onclick="location.href='/memberLogin.do'">로그인</button>
-         	  <button type="button" class="btn btn-light btn-block " onclick="location.href='/memberFindPw.do'">비밀번호 찾기</button>
+         	 <button type="button" class="btn btn-light btn-block " id="loginBtn" onclick="location.href='/memberLogin.do'">로그인하러 가기</button>
+         	  <button type="button" class="btn btn-light btn-block " id="pwBtn" onclick="location.href='/memberFindPw.do'">비밀번호 찾기</button>
         </section>   
    
     
