@@ -80,4 +80,11 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return userPw;
 	}
+
+	public int JoinIdCheck(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.JoinIdCheck(conn, userId);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
