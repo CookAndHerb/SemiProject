@@ -17,8 +17,6 @@ public class mBoardService {
 	mBoardDAO dao = new mBoardDAO();
 	mBoardVO vo = new mBoardVO();
 	
-	
-	
 	public int getAllCount() {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.getAllCount(conn);
@@ -105,6 +103,22 @@ public class mBoardService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+	}
+
+
+public int insertBoard(mBoardVO boardVO) {
+	Connection conn = JDBCTemplate.getConnection();
+	int result = mBoardDAO.insertBoard(conn, boardVO); //
+	
+	if(result > 0) {
+		JDBCTemplate.commit(conn);
+	} else {
+		JDBCTemplate.rollback(conn);
+	}
+	JDBCTemplate.close(conn);
+	return result;
+	
+	
 	}
 }
 
