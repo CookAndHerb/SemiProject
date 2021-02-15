@@ -56,7 +56,7 @@
   <h2>COOK&TALK</h2>
   <p>COOK&TALK 자유게시판 입니다</p>  
   
-<form action="/mboardWrite.do" method="post">
+<form action="/mBoardWrite.do" method="post">
 
     <table class="body">
 
@@ -75,29 +75,58 @@
         <td><textarea id="board_content" name="board_content"></textarea></td>
 
       </tr>
+      
+      <tr>
+
+        <th>작성자</th>
+
+        <td><input type="text" id="board_title" name="board_title"></td>
+
+      </tr>
+      
+      <tr>
+
+        <th>등록일</th>
+
+        <td><input type="text" id="board_title" name="board_title"></td>
+
+      </tr>
+      
+      <tr>
+
+        <th>조회수</th>
+
+        <td><input type="text" id="board_title" name="board_title"></td>
+
+      </tr>
+      
 
     </table>
-
-  </form>
+</form>
+  
 <script type="text/javascript">
-function chkForm() {
+
+function WriteForm() {
 
 	if ($("#boardTitle").val() == "") {
 		alert("제목을 입력해주세요");
 		return;
 	}
 
-    $("#boardContent").val(ckeditor.outputBodyHTML());
-    if ($("#tbContent").val() == "") {
+    $("#boardContent").val();
+    if ($("#baordContent").val() == "") {
         alert("내용을 입력해주세요");
         return;
     }
+    
 </script>
-  <div class="Btn">
 
-<%-- <input type="submit" value="등록" ><a href="listView.jsp">  --%>
-<button onclick="location.href='/mBoard/getBoardList.jsp" >글등록</button>  
+<div class="Btn">
 
-  </div>
+<button onclick="location.href='/mBoard/boardAllList.jsp'" >등록</button> 
+<!--  <input type="submit" value="등록" id="confirm" class="btn btnsuccess" >-->
+<button onclick="location.href='/mBoard/boardAllList.jsp'" >작성취소</button>  
+
+ </div>
 </body>
 </html>
