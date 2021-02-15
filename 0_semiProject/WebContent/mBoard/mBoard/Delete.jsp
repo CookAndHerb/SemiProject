@@ -19,7 +19,7 @@
 	location.replace('/mBoardList.do');
 <%}else{ %>
 	
-	alert('삭제를 실패 하였습니다.');
+	alert('삭제 실패 하였습니다.');
 	history.back(-1); //
 
 <%   } %>
