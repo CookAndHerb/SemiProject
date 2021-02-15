@@ -55,6 +55,14 @@
 		background-color:  #b0c364;
 		color: white;
 	}
+	#emailCheckNum{
+		border-color: #b0c364;
+    	color: #b0c364;
+	}
+	#emailCheckNum:hover{
+		background-color:  #b0c364;
+		color: white;
+	}
 	.table-borderless td{
 		font-size: 16px;
 		font-weight: bold;
@@ -69,6 +77,7 @@
 		width: 850px;
 		margin-bottom: 20px;
 	}
+
 </style>
 
 </head>
@@ -119,10 +128,22 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userEmail">이메일</label></td>
 				<td class="col-sm-12">
-					<input type="email" name="userEmail" class="form-control" placeholder="ex)cook@cook.com" required>
+					<input type="email" name="userEmail" id="userEmail" class="form-control" placeholder="ex)cook@cook.com" required>
 				</td>
 				<td>
 					<input type="button" name="emailCheck" id="emailCheck" value="인증번호" class="btn btn-outline-success px-4">
+				</td>
+			</tr>
+			<tr>
+				<td><span id="emailCheckMessage" style="color:red;font-weight:bold"></span></td>
+			</tr>
+			<tr class="d-flex">
+				<td class="col-4"><label for="userEmailNum">인증번호</label></td>
+				<td class="col-sm-12">
+					<input type="text" name="userEmailNum" id="userEmailNum" class="form-control" placeholder="인증번호를 입력해 주세요" required>
+				</td>
+				<td>
+					<input type="button" name="emailCheckNum" id="emailCheckNum" value="인증하기" class="btn btn-outline-success px-4">
 				</td>
 			</tr>
 			<tr class="d-flex">
@@ -145,10 +166,10 @@
 			<tr>
 				<td><span id="NicknameCheckMessage" style="color:red; font-weight:bold"></span></td>
 			</tr>
-			<tr class="d-flex">
+			<tr class="d-flex" >
 				<td class="col-4"><label for="userBirth">생년월일</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userBirth" placeholder="숫자만 입력해 주세요" class="form-control" onkeyup="birthCheckFunction();" required>
+					<input type="text" name="userBirth" placeholder="숫자만 입력해 주세요" class="form-control" required>
 				</td>
 			</tr>
 			<tr>
@@ -157,7 +178,7 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userPhone">전화번호</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userPhone" placeholder="숫자만 입력해 주세요" class="form-control" onkeyup="phoneCheckFunction();" required>
+					<input type="text" name="userPhone" placeholder="숫자만 입력해 주세요" class="form-control" required>
 				</td>
 			</tr>
 			<tr>
@@ -170,11 +191,12 @@
 		</div>
 		<input type="hidden" name="checkedId" value="">
 		<input type="hidden" name="checkedEmail" value="">
+		<input type="hidden" name="checkedEmailNum" value="">
 		<input type="hidden" name="checkedNickname" value="">
 	</form>
 </div>
 <script>
-	// 폼 전송 전 중복확인 체크
+	// 폼 전송 전 버튼 체크
 	function check() {
 		  if($("input[name='checkedId']").val()==''){
 			    alert('아이디 중복확인을 해주세요.');
@@ -184,8 +206,16 @@
 			    alert('닉네임 중복확인을 해주세요.');
 			    $("input[name='checkedNickname']").eq(0).focus();
 			    return false;
+			}else if($("input[name='checkedEmail']").val()==''){
+			    alert('인증번호 버튼을 눌러주세요 ');
+			    $("input[name='checkedEmail']").eq(0).focus();
+			    return false;
+			}else if($("input[name='checkedEmailNum']").val()==''){
+			    alert('인증하기 버튼을 눌러주세요 ');
+			    $("input[name='checkedEmailNum']").eq(0).focus();
+			    return false;
 			}
-		  else return true;
+		  	else return true;
 	}
 	// 회원가입 버튼 누르기 전 입력 체크
 	(function() {
@@ -228,7 +258,6 @@
 	$('#NicknameCheck').on("click", function(){
 		$("input[name=checkedNickname]").val('y');
 		var userNickname = $("#userNickname").val();
-		console.log(userId);
 		$.ajax({
 			type: 'POST', 
 			url: '/MemberJoinNicknameCheck.do',
@@ -245,21 +274,37 @@
 			}
 		})
 	});
+	// 이메일 인증번호 전송
 	$('#emailCheck').on("click", function(){
 		$("input[name=checkedEmail]").val('y');
 		var userEmail = $("#userEmail").val();
-		console.log(userId);
+		if(userEmail == ''){
+			$('#emailCheckMessage').html('이메일을 입력해 주세요');
+			return false;
+		}
 		$.ajax({
 			type: 'get', 
 			url: '/MemberJoinEmailCheck.do',
 			async : false,
-			data: {userNickname: userNickname},
-			success: function(result){ 
+			data: {userEmail: userEmail},
+			success: function(data){ 
+				$('#emailCheckMessage').html('인증번호가 발송되었습니다.');
+			}
+		})
+	});
+	$('#emailCheckNum').on("click", function(){
+		$("input[name=checkedEmailNum]").val('y');
+		var userEmailNum = $("#userEmailNum").val();
+		$.ajax({
+			type: 'get', 
+			url: '/MemberJoinEmailCheckNum.do',
+			data: {userEmailNum: userEmailNum},
+			success: function(result){
 				if(result == 1){ 
-					$('#NicknameCheckMessage').html('사용할 수 없는 닉네임입니다.');
-					 $("#join_btn").attr("disabled", "disabled");
-				} else{
-					$('#NicknameCheckMessage').html('사용할 수 있는 닉네임입니다.');
+					alert("인증번호가 맞지 않습니다");
+					$("#join_btn").attr("disabled", "disabled");
+				}else{
+					alert("인증번호가 확인되었습니다.");
 					$("#join_btn").removeAttr("disabled");
 				}
 			}
@@ -290,20 +335,19 @@
 	function birthCheckFunction(){
 		var userBirth = $('input[name=userBirth]');
 		//숫자만 8글자
-		if (!/^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+		if (/^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
 				.test(userBirth.val())) {
-			$('#birthCheckMessage').html('생년월일 8자리 입력 ex)19990101');
-			$("#join_btn").attr("disabled", "disabled");
-		}else{
 			$('#birthCheckMessage').html('');
 			$("#join_btn").removeAttr("disabled");
+		}else{
+			$('#birthCheckMessage').html('생년월일 8자리 입력 ex)19990101');
+			$("#join_btn").attr("disabled", "disabled");
 		}
 	}
 	function phoneCheckFunction(){
 		var userPhone = $('input[name=userPhone]');
-		var regExp =  /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		//숫자만 11글자
-		if (regExp.test(userPhone.val())) {
+		var phonePattern = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
+		if (phonePattern.test(userPhone.val())) {
 			$('#phoneCheckMessage').html('');
 			  $("#join_btn").removeAttr("disabled");
 		}else{
@@ -323,7 +367,7 @@
             $("#join_btn").removeAttr("disabled");
         }
     }
-
+	
 </script>
 
 	<footer>
