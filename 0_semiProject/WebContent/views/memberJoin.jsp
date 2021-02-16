@@ -382,7 +382,7 @@
 	}
 	function phoneCheckFunction(){
 		var userPhone = $('input[name=userPhone]');
-		if (/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g.test(userPhone.val())) {
+		if (/(^02.{0}|^01.{1}|[0-9]{4})([0-9]+)([0-9]{7})/g.test(userPhone.val())) {
 			$('#phoneCheckMessage').html('');
 			$("#join_btn").removeAttr("disabled");
 		}else{
