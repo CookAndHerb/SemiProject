@@ -109,7 +109,7 @@
                                             <li><a href="/resources/contact.html">기타</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/resources/single-post.html">Notice</a></li>
+                                    <li><a href="/noticeAllList.do">Notice</a></li>
                                     <li><a href="/resources/contact.html">Cook & Talk</a></li>
                                     <li><a href="/resources/contact.html">비회원 자유 게시판</a></li>
                                 </ul>

@@ -14,7 +14,7 @@
 		<%@ include file="/template/top.jsp" %>
 </header>
 
-	    
+
 	    
 <!-- content 부분-->
     <div class="hero-area">
