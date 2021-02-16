@@ -101,7 +101,7 @@
                                             <li><a href="/RboardAllList.do?category=1">반찬</a></li>
                                             <li><a href="/RboardAllList.do?category=2">국 & 탕</a></li>
                                             <li><a href="/RboardAllList.do?category=3">찌개</a></li>
-                                            <li><a href="/RboardAllList.do?category=4">밥 / 죽</a></li>
+                                            <li><a href="/RboardAllList.do?category=4">밥 & 죽</a></li>
                                             <li><a href="/RboardAllList.do?category=5">면</a></li>
                                             <li><a href="/RboardAllList.do?category=6">디저트</a></li>
                                             <li><a href="/RboardAllList.do?category=7">비건</a></li>
