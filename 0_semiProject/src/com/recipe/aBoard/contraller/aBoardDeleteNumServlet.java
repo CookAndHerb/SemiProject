@@ -24,13 +24,12 @@ public class aBoardDeleteNumServlet extends HttpServlet {
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		request.setCharacterEncoding("UTF-8");
-
 		int num = 	Integer.parseInt(request.getParameter("num"));
+		
 		aBoardService se = new aBoardService();
 		aBoardVO vo = se.getOneUpdateBoard(num);
-
-		request.setAttribute("vo", vo);
 		
+		request.setAttribute("vo", vo);
 		RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardDeleteForm.jsp");
 		dis.forward(request ,response);
 	}

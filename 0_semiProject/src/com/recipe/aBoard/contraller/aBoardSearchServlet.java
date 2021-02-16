@@ -30,19 +30,15 @@ public class aBoardSearchServlet extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String keyword = request.getParameter("keyword");
 		String pageNum = request.getParameter("pageNum");
-
 		int pageSize = 10;
 		
-
 		if (pageNum == null) {
 			pageNum = "1";
 		}
+		
 		int currentPage = Integer.parseInt(pageNum);
-
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
-		
-
 		int count = 0;
 		int number = 0;
 		

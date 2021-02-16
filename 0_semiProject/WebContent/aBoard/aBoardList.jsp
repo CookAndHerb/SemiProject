@@ -162,7 +162,8 @@
 			</c:if>
 		</c:if>
 	</div>
-		<form action="/aBoardSearch.do?keyword="${keyword} name="frm" method="get" class="form-inline justify-content-center" role="form" style="margin:40px 0">
+		<form action="/aBoardSearch.do?keyword="${keyword} name="frm" method="get" 
+		class="form-inline justify-content-center" role="form" style="margin:40px 0">
 			<div class="input-group mb-3">
 				<input type="text" name="keyword"class="form-control" placeholder="Search" placeholder="검색"/>
 				 <div class="input-group-append">
