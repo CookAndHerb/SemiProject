@@ -39,7 +39,7 @@ public class NoticeAllSelectServlet extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			
 			int pageSize = 10;
-			String pageNum = request.getParameter("currentPage");
+			String pageNum = request.getParameter("pageNum");
 			
 			if(pageNum == null) {
 				pageNum = "1";
