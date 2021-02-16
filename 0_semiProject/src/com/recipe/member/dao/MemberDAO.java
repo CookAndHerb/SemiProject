@@ -96,11 +96,10 @@ public class MemberDAO {
 	
 	public int updateMember(Connection conn, MemberVO mvo) {
 		PreparedStatement pstmt = null;
-		
+		int result = 0;
 		String query = "UPDATE MEMBER SET USER_PW=?, USER_EMAIL=?, USER_NICKNAME=?, "
 				+ "USER_PHONE=? WHERE USER_ID=?";
 		
-		int result = 0;
 		
 		try {
 			pstmt=conn.prepareStatement(query);
@@ -111,6 +110,7 @@ public class MemberDAO {
 			pstmt.setString(5, mvo.getUserId());
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -168,5 +168,27 @@ public class MemberDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return userPw;
+	}
+	
+	public int checkNick(Connection conn, String userNickname) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM MEMBER WHERE USER_NICKNAME=?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, userNickname);
+				rset = pstmt.executeQuery();
+				if(rset.next() || userNickname.equals("")) { // 결과가 있으면
+					return 0; // 이미 존재하는 닉네임
+				}else {
+					return 1; // 사용 가능한 닉네임
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			return -1; // 데이터베이스 오류
 	}
 }

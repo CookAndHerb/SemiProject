@@ -53,6 +53,7 @@ public class MemberService {
 	}
 	
 	public int updateMember(MemberVO mvo) {
+		
 		Connection conn = JDBCTemplate.getConnection();
 		int result = mDAO.updateMember(conn, mvo);
 		
@@ -79,5 +80,12 @@ public class MemberService {
 		String userPw = mDAO.findPw(conn, userId, userEmail);
 		JDBCTemplate.close(conn);
 		return userPw;
+	}
+	
+	public int checkNick(String userNickname) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.checkNick(conn, userNickname);
+		JDBCTemplate.close(conn);
+		return result;
 	}
 }

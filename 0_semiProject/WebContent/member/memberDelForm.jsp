@@ -57,25 +57,18 @@ section#content_body {
 	    <!-- ##### Hero Area Start ##### -->
 <%
 	MemberVO mvo = (MemberVO)session.getAttribute("member");
-
-	if(mvo == null){%>	
-		<script>alert("로그인을 해주세요.")
-			location.replace("/views/login.jsp")
-		</script>
-		
-	<%} %>
-
+%>
  <br><br><br>
  
 <div class="container2 col-6">
-  <h2 style="color: #b0c364;">개인 정보 수정</h2>
+  <h2 style="color: #b0c364;">탈퇴</h2>
   <br>
   <h5>비밀번호 재확인</h5>
   <p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</p>
 
 <br>
 <hr>
-  <form action="/MemberMyPagePw.do" method="POST" >
+  <form action="/memberWithdraw.do" method="POST" >
     <div class="form-col container3">
       
        <div class="my_kr">아이디</div><div class="my_in"><input type="text" class="form-control" value="${member.userId}"  name="userId" readonly="readonly"></div>
@@ -87,7 +80,7 @@ section#content_body {
     </div>
     <hr>
     <br>
-    <button type="submit" class="btn my_btn">확인</button>
+    <button type="submit" class="btn my_btn">탈퇴</button>
   </form>
 </div>
    

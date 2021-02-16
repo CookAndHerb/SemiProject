@@ -136,9 +136,7 @@ section#content_body {
                 <!-- Post Area -->
                 <div class="col-12 col-lg-8 col-xl-9">
                     <!-- Single Blog Post -->
-                    
                   <div class ="noRecipe">
-                 
                   	<div class="noRecipe_cont"> 검색 결과가 없습니다.</div>
                   	<br>
                   	<br>
@@ -180,11 +178,11 @@ section#content_body {
 <ul class="pagination pagination-sm justify-content-center">
 
 <c:choose>
-	<c:when test="${pageinfo.currentPage == 1}">
+	<c:when test="${pageinfo.startNavi == 1}">
             <li class="page-item disabled"><a class="page-link" href="#">◀</a></li>
 	</c:when>
 	<c:otherwise>
- 	<li class="page-item"><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${pageinfo.currentPage-1}">◀</a></li>
+ 	<li class="page-item"><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${pageinfo.startNavi-1}">◀</a></li>
 	</c:otherwise>
 </c:choose>
 
@@ -195,18 +193,18 @@ section#content_body {
 	</c:when>
 	
 	<c:otherwise>
-            <li class="page-item "><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${page}">${page}</a></li>
+            <li class="page-item  "><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${page}">${page}</a></li>
 	</c:otherwise>
 	</c:choose>
 </c:forEach>
 
 
 <c:choose>
-	<c:when test="${endNavi == pageTotalCount}">
-            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+	<c:when test="${pageinfo.endNavi == pageinfo.pageTotalCount}">
+            <li class="page-item disabled"><a class="page-link" href="#">▶</a></li>
   	</c:when>
 	<c:otherwise>
-	 <li class="page-item"><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${pageinfo.currentPage+1}">▶</a></li>
+	 <li class="page-item"><a class="page-link" href="/RboardSearch.do?searchCategory=${searchCategory }&keyword=${keyword }&currentPage=${pageinfo.endNavi+1}">▶</a></li>
 	</c:otherwise>
 </c:choose>    
 </ul>

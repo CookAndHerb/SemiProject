@@ -53,10 +53,10 @@ public class MemberDeleteServlet extends HttpServlet {
 			if(result>0) {
 				out.println("<script> alert('탈퇴 완료'); </script>");
 				session.invalidate(); //세션 파기
-				out.println("<script> location.replace('/CookCookRecipe/index.jsp'); </script>");
+				out.println("<script> location.replace('/index.jsp'); </script>");
 			}else {
 				out.println("<script> alert('탈퇴 실패'); </script>");
-				out.println("<script> location.replace('/CookCookRecipe/index.jsp'); </script>");
+				out.println("<script> location.replace('/index.jsp'); </script>");
 			}
 		}else {
 			//사용자가 입력한 값과 실제 session에 저장된 값이 다르다면
@@ -66,7 +66,7 @@ public class MemberDeleteServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 
 			out.println("<script> alert('비밀번호가 일치하지 않습니다.'); </script>");
-			out.println("<script> location.replace('/CookCookRecipe/index.jsp'); </script>");
+			out.println("<script> history.back(-1);  </script>");
 		}
 	}
 }
