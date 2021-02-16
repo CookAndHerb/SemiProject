@@ -8,8 +8,8 @@
 </head>
 <body>
 <script>
-		alert("아이디 또는 비밀번호 오류입니다.");
-		history.back(-1); 
-	</script>
+	alert('회원 정보 수정 실패');
+	history.back(-1); 
+</script>
 </body>
 </html>

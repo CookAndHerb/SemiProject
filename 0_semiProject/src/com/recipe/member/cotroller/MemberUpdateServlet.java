@@ -43,33 +43,31 @@ public class MemberUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String userId = ((MemberVO)session.getAttribute("member")).getUserId();
-
+		
 		//사용자가 수정할 수 있는 값만 가져옴
 		String userPw = request.getParameter("userPw");
-		String userEmail = request.getParameter("userEmail");
+		System.out.println(userPw);
 		String userNickname = request.getParameter("userNickname");
+		String userEmail = request.getParameter("userEmail");
 		String userPhone = request.getParameter("userPhone");
-
+		String userName = request.getParameter("userName");
+		String userBirth = request.getParameter("userBirth");
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(userId); //아이디는 담아야함
 		mvo.setUserPw(userPw);
 		mvo.setUserEmail(userEmail);
 		mvo.setUserNickname(userNickname);
 		mvo.setUserPhone(userPhone);
-		
-		session.setAttribute("member", mvo);
-
+		mvo.setUserName(userName);
+		mvo.setUserBirth(userBirth);
 		//3. 비즈니스 로직 처리
 		int result = new MemberService().updateMember(mvo);
+		System.out.println(result);
 		if(result>0) {
-			response.sendRedirect("/CookCookRecipe/myPageLoad.do"); //서블릿통해서 이동
+			session.setAttribute("member", mvo);
+			response.sendRedirect("/member/memberUptSuccess.jsp"); 
 		}else {
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=UTF-8");
-
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원정보실패');</script>");
-			out.println("<script>location.replace('/myPageLoad.do');</script>");
+			response.sendRedirect("/member/memberUptFail.jsp"); 
 		}
 	}
 }

@@ -8,8 +8,8 @@
 </head>
 <body>
 <script>
-		alert("아이디 또는 비밀번호 오류입니다.");
-		history.back(-1); 
+	alert('비밀번호를 정확하게 입력해 주세요.');
+	history.back(-1); 
 	</script>
 </body>
 </html>

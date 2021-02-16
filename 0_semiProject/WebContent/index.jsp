@@ -15,8 +15,7 @@
 		<%@ include file="/template/top.jsp" %>
 </header>
 
-	    
-	    
+	<br><br><br>
 <!-- content 부분-->
     <div class="hero-area">
     
@@ -32,8 +31,8 @@
                 <!-- Blog Content -->
                 <div class="blog-content-bg">
                     <div class="blog-content">
-                        <a href="#" class="post-tag">Food 1</a>
-                        <a href="#" class="post-title">Chicken Salad</a>
+                        <a href="#" class="post-tag">오늘의 추천메뉴</a>
+                        <a href="#" class="post-title">아보카도 샌드위치</a>
                         <div class="post-meta">
                             <a href="#" class="post-date">July 11, 2018</a>
                             <a href="#" class="post-author">By Julia Stiles</a>
@@ -52,8 +51,8 @@
                 <!-- Blog Content -->
                 <div class="blog-content-bg">
                     <div class="blog-content">
-                        <a href="#" class="post-tag">Food 2</a>
-                        <a href="#" class="post-title">Chicken Salad</a>
+                        <a href="#" class="post-tag">오늘의 추천메뉴</a>
+                        <a href="#" class="post-title">소고기 타코</a>
                         <div class="post-meta">
                             <a href="#" class="post-date">July 11, 2018</a>
                             <a href="#" class="post-author">By Julia Stiles</a>
@@ -72,8 +71,8 @@
                 <!-- Blog Content -->
                 <div class="blog-content-bg">
                     <div class="blog-content">
-                        <a href="#" class="post-tag">Food 3</a>
-                        <a href="#" class="post-title">Chicken Salad</a>
+                        <a href="#" class="post-tag">오늘의 추천메뉴</a>
+                        <a href="#" class="post-title">수제 햄버거</a>
                         <div class="post-meta">
                             <a href="#" class="post-date">July 11, 2018</a>
                             <a href="#" class="post-author">By Julia Stiles</a>
@@ -86,14 +85,14 @@
             <div class="single-slide">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="#"><img src="/resources/img/bg-img/3.jpg" alt=""></a>
+                    <a href="#"><img src="/resources/img/bg-img/버섯크림파스타.jpg" alt=""></a>
                 </div>
 
                 <!-- Blog Content -->
                 <div class="blog-content-bg">
                     <div class="blog-content">
-                        <a href="#" class="post-tag">Food 4</a>
-                        <a href="#" class="post-title">Chicken Salad</a>
+                        <a href="#" class="post-tag">오늘의 추천메뉴</a>
+                        <a href="#" class="post-title">버섯 크림 파스타</a>
                         <div class="post-meta">
                             <a href="#" class="post-date">July 11, 2018</a>
                             <a href="#" class="post-author">By Julia Stiles</a>
@@ -104,56 +103,9 @@
         </div>
     </div>
     <!-- ##### Hero Area End ##### -->
+    
+    <br><br><br><br><br><br>
 
-    <!-- ##### Catagory Area Start ##### -->
-    <div class="post-catagory section-padding-100-0 mb-70">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-                        <img src="/resources/img/bg-img/4.jpg" alt="">
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="#" class="post-tag">1</a>
-                                <a href="#" class="post-title">Healthy Food</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-                        <img src="/resources/img/bg-img/5.jpg" alt="">
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="#" class="post-tag">2</a>
-                                <a href="#" class="post-title">Organic Cuisine</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-                        <img src="/resources/img/bg-img/6.jpg" alt="">
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="#" class="post-tag">3</a>
-                                <a href="#" class="post-title">Vegetarian Food</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Catagory Area End ##### -->
 
 
 
@@ -161,5 +113,16 @@
 	<footer>
 		<%@ include file="/template/bottom.jsp" %>
 	</footer>
+	
+	
+	<script src="/resources/js/jquery/jquery-2.2.4.min.js"></script>
+    
+    <script src="/resources/js/bootstrap/popper.min.js"></script>
+    
+    <script src="/resources/js/bootstrap/bootstrap.min.js"></script>
+    
+    <script src="/resources/js/plugins/plugins.js"></script>
+    
+    <script src="/resources/js/active.js"></script>
 </body>
 </html>
