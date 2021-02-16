@@ -98,15 +98,15 @@
                                     <li><a href="#">CookCook Recipe</a>
                                         <ul class="dropdown">
                                             <li><a href="/rBoard/RboardCategoryPage.jsp">Category Home</a></li>
-                                            <li><a href="/resources/catagory.html">반찬</a></li>
-                                            <li><a href="/resources/catagory-post.html">국 & 탕</a></li>
-                                            <li><a href="/resources/single-post.html">찌개</a></li>
-                                            <li><a href="/resources/receipe.html">밥 / 죽</a></li>
-                                            <li><a href="/resources/contact.html">면</a></li>
-                                            <li><a href="/resources/contact.html">디저트</a></li>
-                                            <li><a href="/resources/contact.html">비건</a></li>
-                                            <li><a href="/resources/contact.html">음료</a></li>
-                                            <li><a href="/resources/contact.html">기타</a></li>
+                                            <li><a href="/RboardAllList.do?category=1">반찬</a></li>
+                                            <li><a href="/RboardAllList.do?category=2">국 & 탕</a></li>
+                                            <li><a href="/RboardAllList.do?category=3">찌개</a></li>
+                                            <li><a href="/RboardAllList.do?category=4">밥 / 죽</a></li>
+                                            <li><a href="/RboardAllList.do?category=5">면</a></li>
+                                            <li><a href="/RboardAllList.do?category=6">디저트</a></li>
+                                            <li><a href="/RboardAllList.do?category=7">비건</a></li>
+                                            <li><a href="/RboardAllList.do?category=8">음료</a></li>
+                                            <li><a href="/RboardAllList.do?category=9">기타</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="/resources/single-post.html">Notice</a></li>
@@ -122,7 +122,7 @@
 										<a href="/logout.do">Logout</a><br>
 									</c:when>
 									<c:otherwise>
-	                                    <a href="/views/login.jsp">Login</a> &nbsp;&nbsp;
+	                                    <a href="/memberLogin.do">Login</a> &nbsp;&nbsp;
 	                                    <a href="/views/memberJoin.jsp">Register</a>
 	                                </c:otherwise>
 	                            </c:choose>

@@ -74,9 +74,9 @@ public class MemberService {
 		return userId;
 	}
 	
-	public String findPw(String userName, String userId) {
+	public String findPw(String userId, String userEmail) {
 		Connection conn = JDBCTemplate.getConnection();
-		String userPw = mDAO.findPw(conn, userName, userId);
+		String userPw = mDAO.findPw(conn, userId, userEmail);
 		JDBCTemplate.close(conn);
 		return userPw;
 	}

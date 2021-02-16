@@ -145,17 +145,17 @@ public class MemberDAO {
 		return userId;
 	}
 	
-	public String findPw(Connection conn, String userName, String userId) {
+	public String findPw(Connection conn, String userId, String userEmail) {
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null;
 		
-		String query = "SELECT * FROM MEMBER WHERE USER_NAME=? AND USER_Id=? AND USER_DEL='N'";
+		String query = "SELECT * FROM MEMBER WHERE USER_ID=? AND USER_EMAIL=? AND USER_DEL='N'";
 		String userPw = null;
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, userName);
-			pstmt.setString(2, userId);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userEmail);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
