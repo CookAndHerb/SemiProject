@@ -1,7 +1,7 @@
 
 
 
-package com.recipe.mBoard.dao;
+package com.recipe.mboard.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,15 +14,15 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.recipe.mBoard.model.mBoardVO;
 import com.recipe.common.JDBCTemplate;
+import com.recipe.mboard.model.mBoardVO;
 
 public class mBoardDAO {	
+	
+public int getAllCount(Connection conn) {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-
-public int getAllCount(Connection conn) {
 		int count = 0;
 				try {
 //		
@@ -43,41 +43,54 @@ public int getAllCount(Connection conn) {
 		return count;
 	}
 	
-	public Vector<mBoardVO> getAllBoard(Connection conn, int startRow, int endRow){ //모든게시글리턴
-		Vector<mBoardVO> v = new Vector<>();
+	public ArrayList<mBoardVO> getAllBoard(Connection conn, int startRow, int endRow){ //모든게시글리턴
+		System.out.println("DAO 시작");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		//Vector<mBoardVO> v = new Vector<>();
+		ArrayList<mBoardVO> list = new ArrayList<mBoardVO>();
 		
 		try {
-			String sql = "SELECT * FROM (SELECT M.*, ROWNUM rnum FROM(SELECT * FROM M_BOARD ORDER BY DESC, ASC)A)"
-					+ "WHERE rnum >= ? AND rnum <= ?";   //
+			String sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NUM DESC)AS ROW_NUM, M_BOARD.* " + 
+					" FROM M_BOARD) WHERE ROW_NUM BETWEEN ? AND ?";   //
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			
+			System.out.println("startRow : " + startRow);
+			System.out.println("endRow : " + endRow);
+			
 			while(rs.next()) {
 				mBoardVO vo = new mBoardVO();
-				vo.setBoardNUM(rs.getInt(1));
-				vo.setBoardTitle(rs.getString(2));				
-				vo.setBoardContent(rs.getString(3));
-				vo.setBoardWriter(rs.getString(4));
-				vo.setBoardDate(rs.getDate(5));  //.toString());
-				vo.setBoardHit(rs.getInt(6));
+				vo.setBoardNUM(rs.getInt("BOARD_NUM"));
+				vo.setBoardTitle(rs.getString("BOARD_TITLE"));				
+				vo.setBoardContent(rs.getString("BOARD_CONTENT"));
+				vo.setBoardWriter(rs.getString("BOARD_WRITER"));
+				vo.setBoardDate(rs.getDate("BOARD_DATE"));  //.toString());
+				vo.setBoardHit(rs.getInt("BOARD_HIT"));
+								
+				list.add(vo);
 				
-				
-				
-				v.add(vo);
+				System.out.println("DAO LIST : " + list);
 			}
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
+			System.out.println("DAO 끝");
 		}
-		return v;
+		return list;
 	}
 	
 	public mBoardVO getOneBoard(Connection conn, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		mBoardVO vo = new mBoardVO();
 		
 		try {
@@ -112,6 +125,9 @@ public int getAllCount(Connection conn) {
 	}
 
 	public mBoardVO getOneUpdateBoard(Connection conn, int num){	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		mBoardVO vo = new mBoardVO();
 
 		try {
@@ -140,6 +156,7 @@ public int getAllCount(Connection conn) {
 		return vo;
 	}
 	public int updateBoard(Connection conn, int num ,String title ,String content){
+		PreparedStatement pstmt = null;
 		
 		int result = 0;
 		try {		
@@ -160,6 +177,8 @@ public int getAllCount(Connection conn) {
 	}  
 	
 	public int deleteBoard(Connection conn, int num){
+		PreparedStatement pstmt = null;
+		
 		int result = 0;
 		try {		
 			String sql = "DELETE FROM M_BOARD WHERE BOARD_NUM=?";
@@ -176,6 +195,9 @@ public int getAllCount(Connection conn) {
 		return result;
 	}
 	public ArrayList<mBoardVO> getSearchBoard(Connection conn, String keyword, int startRow, int endRow){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		ArrayList<mBoardVO> list = new ArrayList<>();
 		System.out.println("keyword: "+keyword);
 		
@@ -209,6 +231,9 @@ public int getAllCount(Connection conn) {
 		return list;
 	}
 	public int getSearchBoardCount(Connection conn, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		//키워드를 통해 검색된 게시물의 총 개수를 구하는 메소드
 		int postCount = 0;
 		

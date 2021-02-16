@@ -1,6 +1,6 @@
 
 
-package com.recipe.mBoard.service;
+package com.recipe.mboard.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 
-import com.recipe.mBoard.service.mBoardService;
-import com.recipe.mBoard.dao.mBoardDAO;
-import com.recipe.mBoard.model.mBoardVO;
 import com.recipe.common.JDBCTemplate;
+import com.recipe.mboard.dao.mBoardDAO;
+import com.recipe.mboard.model.mBoardVO;
+import com.recipe.rboard.model.vo.Rboard;
 
 public class mBoardService {
 	mBoardDAO dao = new mBoardDAO();
@@ -30,13 +30,20 @@ public class mBoardService {
 		
 		return result;
 	}
-	public Vector<mBoardVO> getAllBoard(int startRow, int endRow){
+	public ArrayList<mBoardVO> getAllBoard(int startRow, int endRow){
+		System.out.println("글목록 서비스 시작");
 		Connection conn = JDBCTemplate.getConnection();
-		Vector<mBoardVO> v = dao.getAllBoard(conn, startRow, endRow);
-		
+		//Vector<mBoardVO> v = dao.getAllBoard(conn, startRow, endRow);
+		ArrayList<mBoardVO> list = dao.getAllBoard(conn, startRow, endRow);
+		for(mBoardVO board : list) {
+			System.out.println(board.getBoardNUM()+"/"+board.getBoardTitle());
+		}
+		if(list==null) {
+			System.out.println("안넘어옴...");
+		}
 		JDBCTemplate.close(conn);
-		
-		return v;
+		System.out.println("글목록 서비스 끝");
+		return list;
 	}
 	public mBoardVO getOneBoard(int num){
 		Connection conn = JDBCTemplate.getConnection();

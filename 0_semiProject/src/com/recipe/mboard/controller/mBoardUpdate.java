@@ -1,4 +1,4 @@
-package com.recipe.mBoard.controller;
+package com.recipe.mboard.controller;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.recipe.mBoard.service.mBoardService;
-import com.recipe.mBoard.model.mBoardVO;
+import com.recipe.mboard.service.mBoardService;
+
 
 @WebServlet("/mBoardUpdate.do")
 public class mBoardUpdate extends HttpServlet {

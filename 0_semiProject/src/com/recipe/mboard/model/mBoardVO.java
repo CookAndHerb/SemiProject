@@ -1,14 +1,16 @@
 
 
-package com.recipe.mBoard.model;
+package com.recipe.mboard.model;
+
+import java.sql.Date;
 
 public class mBoardVO {
 	private int boardNUM;
 	private String boardTitle;
 	private String boardContent;
 	private String boardWriter;
-	private String boardDate;
-	private String boardHit;
+	private Date boardDate;
+	private int boardHit;
 	
 	
 	public int getBoardNUM() {
@@ -35,16 +37,16 @@ public class mBoardVO {
 	public void setBoardWriter(String boardWriter) {
 		this.boardWriter = boardWriter;
 	}
-	public String getBoardDate() {
+	public Date getBoardDate() {
 		return boardDate;
 	}
-	public void setBoardDate(String boardDate) {
+	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
-	public String getBoardHit() {
+	public int getBoardHit() {
 		return boardHit;
 	}
-	public void setBoardHit(String boardHit) {
+	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
 	@Override

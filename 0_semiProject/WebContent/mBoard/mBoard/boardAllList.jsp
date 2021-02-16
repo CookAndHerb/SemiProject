@@ -124,7 +124,6 @@ onclick="location.href='?page=<%=endPage+1 %>'">
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="com.recipe.mBoard.model.mBoardVO" %>
 
 <!DOCTYPE html>
 <html>
@@ -182,10 +181,10 @@ function WriteForm(){
 		<c:forEach var="v" items="${v}">
 			
 			<tr height="30">
-				<td width="40" align="center">${v.boardNum}</td>
+				<td width="40" align="center">${v.boardNUM}</td>
 				<td width="300" align="Left">
 					
-				<a href="/mBoardInfo.do?num=${v.boardNum}">${v.boardTitle}</a>
+				<a href="/mBoardInfo.do?num=${v.boardNUM}">${v.boardTitle}</a>
 				</td>
 				<td width="150" align="Left">${v.boardDate}</td>
 				<td width="80" align="Left">${v.boardHit}</td>

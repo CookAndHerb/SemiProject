@@ -1,4 +1,4 @@
-package com.recipe.mBoard.controller;
+package com.recipe.mboard.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.recipe.mBoard.model.mBoardVO;
-import com.recipe.mBoard.service.mBoardService;
+import com.recipe.mboard.model.mBoardVO;
+import com.recipe.mboard.service.mBoardService;
 import com.recipe.member.vo.MemberVO;
 
 /**

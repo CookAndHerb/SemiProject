@@ -110,7 +110,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="/resources/single-post.html">Notice</a></li>
-                                    <li><a href="/resources/contact.html">Cook & Talk</a></li>
+                                    <li><a href="/mBoardList.do">Cook & Talk</a></li>
                                     <li><a href="/aBoardListServlet.do">Cook Q&A</a></li>
                                 </ul>
 
