@@ -148,13 +148,45 @@ function WriteForm(){
 }
 </script>
 -->
+
+<style>
+	.container {
+    	margin: 0;
+    	padding: 0;
+    }
+    #btnSearch{
+    	background-color:  #b0c364;
+    	border-color:  #b0c364;
+    }
+    #write_btn{
+    	background-color:  #b0c364;
+    	border-color:  #b0c364;
+    }
+    .subject{
+    	text-align: center;
+    }
+    .text{
+		color:  #b0c364;
+		text-align: center;
+    }
+    table{
+    	margin-right : 300px;
+    }
+}
+</style>
+
 </head>
 <body>
+<!-- 상단 공동 메뉴 -->
+<header id="top_section">
+		<%@ include file="/template/top.jsp" %>
+</header>
+
 <% MemberVO mvo = (MemberVO)session.getAttribute("member"); 
 	System.out.println(mvo);  %>
-
-  <h2>COOK&TALK</h2>
-  <p>COOK&TALK 자유게시판 입니다</p> 
+<br>
+  <h2 class="subject">COOK&TALK</h2>
+  <p class="text">COOK&TALK 자유게시판 입니다</p> 
   
  
 	
@@ -164,34 +196,29 @@ function WriteForm(){
  <button onclick="location.href ='/mBoard/mBoard/WriteForm.jsp'">글작성</button> 
 	</c:if>  		
           
-        <text align="center">
+  
     </div>
     
-	<table width="800" border="1">
-		<tr height="30">
-			<td colspan="5" align="right">
-			
-			</td>
-		</tr>
-		<tr height="30">
-			<td width="40" align="center">글번호</td>
-			<td width="300" align="center">글제목</td>
-			<td width="150" align="center">작성자</td>
-			<td width="155" align="center">작성일</td>
-			<td width="70" align="center">조회수</td>
+    
+	<table class="table table-hover col-sm-10" >
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
 		</tr>
 		<c:set var="number" value="${number}" />
 		<c:forEach var="v" items="${list}">
 			
-			<tr height="30">
-				<td width="40" align="center">${v.boardNUM}</td>
-				<td width="300" align="Left">
-					
+			<tr>
+				<td>${v.boardNUM}</td>
+				<td>
 				<a href="/mBoardInfo.do?num=${v.boardNUM}">${v.boardTitle}</a>
 				</td>
-				<td width="150" align="Left">${v.boardWriter}</td>
-				<td width="80" align="Left">${v.boardDate}</td>
-				<td width="80" align="Left">${v.boardHit}</td>
+				<td>${v.boardWriter}</td>
+				<td>${v.boardDate}</td>
+				<td>${v.boardHit}</td>
 			</tr>
 			<c:set var="number" value="${number-1}" />
 		</c:forEach>
@@ -320,6 +347,11 @@ function WriteForm(){
 <input type="text" name="searchVal" id="searchVal" style="width:150px; padding:2px; border:1px solid #abadb3" value="">
 <button type="button" class="btn btn-outline-success" value="검색" style="border:none; 
 vertical-align:middle" onclick="searchChk();">검색</button> <!-- 마우스 올리면 색생 나타남 -->
+
+<!-- 하단 -->
+	<footer>
+		<%@ include file="/template/bottom.jsp" %>
+	</footer>
 </body>
 </html>
 
