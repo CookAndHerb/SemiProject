@@ -34,7 +34,6 @@ public class aBoardListServlet extends HttpServlet {
 		if(pageNum==null){
 			pageNum="1";
 		}
-
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
@@ -46,6 +45,12 @@ public class aBoardListServlet extends HttpServlet {
 
 		ArrayList<aBoardVO> list = se.getAllBoard(startRow, endRow);
 		number = count - (currentPage - 1) * pageSize;
+		
+		System.out.println("startRow: "+startRow);
+		System.out.println("endRow: "+endRow);
+		System.out.println("number: "+number);
+		System.out.println("list : "+list.size());
+		System.out.println("---------------------------");
 		
 		request.setAttribute("list", list);
 		request.setAttribute("number", number);

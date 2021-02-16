@@ -17,7 +17,7 @@ public class MemberFindPw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		execute(request, response);
+		request.getRequestDispatcher("/views/memberFindPw.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,16 +30,17 @@ public class MemberFindPw extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String userName = request.getParameter("userName");
 		String userId = request.getParameter("userId");
+		String userEmail = request.getParameter("userEmail");
 		
 		String userPw = null;
 		
-		userPw = new MemberService().findPw(userName, userId);
+		userPw = new MemberService().findPw(userId, userEmail);
 		
 		if(userPw!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userPw", userPw);
+			session.setAttribute("userId", userId);
 			request.getRequestDispatcher("/views/memberFindPwSuccess.jsp").forward(request, response);
 		} else {
 			PrintWriter out = response.getWriter();

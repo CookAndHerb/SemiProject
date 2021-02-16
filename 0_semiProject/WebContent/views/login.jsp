@@ -19,6 +19,15 @@
 		font-weight: normal;
 		color: #b0c364;
 	}
+	#loginBtn{
+		color: #b0c364;
+		border: 1px solid #b0c364;
+		background: white;
+	}
+	#regBtn{
+		background: #b0c364;
+		color: white;
+	}
 </style>
 
 </head>
@@ -45,11 +54,11 @@
                   <input type="password" class="form-control col-12" placeholder="비밀번호를 입력하세요" name="userPw">
                 </div><br>
                 <div class="find">
-				<a href="/views/memberFindId.jsp" class="find-font">아이디 찾기</a> | 
-				<a href="/views/memberFindPw.jsp" class="find-font">비밀번호 찾기</a>
+				<a href="/memberFindId.do" class="find-font">아이디 찾기</a> | 
+				<a href="/memberFindPw.do" class="find-font">비밀번호 찾기</a>
 			</div><br>
-                <button type="submit" class="btn btn-light btn-block ">로그인</button>
-                <button type="button" class="btn btn-light btn-block ">회원가입</button>
+                <button type="submit" class="btn btn-outline-light btn-block" id="loginBtn">로그인</button>
+                <button type="button" class="btn btn-light btn-block" id="regBtn">회원가입</button>
                 <div class="form-group form-check float-right">                  
                 </div>
               </form>

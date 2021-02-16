@@ -30,14 +30,18 @@
 		background-color:  #b0c364;
     	border-color:  #b0c364;
 	}
-	
+	.text{
+		color:  #b0c364;
+		text-align: center;
+    }
 </style>
 </head>
 <body>
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
-<h2 class="board_title" align="center" style="margin: 20px 0px 30px 0;">Cook Q&A</h2>
+<h2 class="board_title" align="center" style="margin: 20px 0 0 0; padding-bottom: 0px;">Cook Q&A</h2>
+<p class="text" style="margin-bottom: 30px">Cook Q&A 게시판 입니다</p>
 	<form action="/aBoardReWrite.do" method="post" class="justify-content-center">
 		<div class="row justify-content-md-center">
             <div class="col-sm-6">
