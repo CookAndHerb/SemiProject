@@ -170,7 +170,7 @@ function WriteForm(){
 		text-align: center;
     }
     table{
-    	margin-right : 300px;
+    	margin-left : 120px;
     }
 }
 </style>
@@ -201,6 +201,7 @@ function WriteForm(){
     
     
 	<table class="table table-hover col-sm-10" >
+	<thead>
 		<tr>
 			<th>글번호</th>
 			<th>글제목</th>
@@ -208,6 +209,8 @@ function WriteForm(){
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
+		</thead>
+		<tbody>
 		<c:set var="number" value="${number}" />
 		<c:forEach var="v" items="${list}">
 			
@@ -222,6 +225,7 @@ function WriteForm(){
 			</tr>
 			<c:set var="number" value="${number-1}" />
 		</c:forEach>
+		</tbody>
 	</table>
 	
 	<%-- <p>

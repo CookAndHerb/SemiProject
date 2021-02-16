@@ -6,30 +6,34 @@
 <meta charset="UTF-8">
 <title>상세</title>
 </head>
+<!-- 상단 공동 메뉴 -->
+<header id="top_section">
+		<%@ include file="/template/top.jsp" %>
+</header>
+
 <body>
-	<table width = "800" border = "1">
-		<tr height="40">
-			
-			<td width="120" align="center">조회수</td>
-			<td width="180" align="center">${vo.boardHit}</td>
+	<table class="table table-hover">
+		<tr>
+			<th>조회수</th>
+			<td>${vo.boardHit}</td>
 		</tr>
 
-		<tr height="40">
-			<td width="120" align="center">작성일</td>
-			<td width="180" align="center">${vo.boardDate}</td>
+		<tr>
+			<th>작성일</th>
+			<td>${vo.boardDate}</td>
 		</tr>
 
-		<tr height="40">
-			<td width="120" align="center">제목</td>
-			<td colspan="3" align="center">${vo.boardTitle}</td>
+		<tr>
+			<th>제목</th>
+			<td>${vo.boardTitle}</td>
 		</tr>
 
-		<tr height="400">
-			<td width="120" align="center">글 내용</td>
-			<td colspan="3" align="center">${vo.boardContent}</td>
+		<tr>
+			<th>글 내용</th>
+			<td>${vo.boardContent}</td>
 		</tr>
 
-		<tr height="40">
+		<tr>
 			<td align="center" colspan="4">
 				<input type="button" value="수정하기" onclick="location.href='/mBoardUpdateNo.do?num=${vo.boardNUM}'">
 				<input type="button" value="삭제하기" onclick="location.href='/mBoard/mBoard/checkDelete.jsp?num=${vo.boardNUM}'">
@@ -37,6 +41,11 @@
 			</td>
 		</tr>
 	</table>
+	
+	<!-- 하단 -->
+	<footer>
+		<%@ include file="/template/bottom.jsp" %>
+	</footer>
 </body>
 
 </html>
