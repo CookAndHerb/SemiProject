@@ -5,34 +5,80 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+table {
+	border-collapse: collapse;
+ 	text-align: center;
+  	line-height: 1.5;
+  	align : center;
+  	line-height: 1.5;
+  	margin: 20px 10px;
+  	font-size : 20px;
+  	width: 100%;
+  	table-layout: fixed;
+}
+
+.thead {
+	text-align : center;
+	font-size : 35px;
+	border-bottom: 3px solid #b0c364;
+	width : 100%;
+}
+
+table th {
+	padding: 10px;
+  	font-weight: bold;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
+}
+table td {
+  	padding: 10px;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
+}
+
+#inputDiv {
+	font-size : 20px;
+	text-align : center;
+	padding : 20px;
+}
+#inputSubmit {
+	background : #b0c364;
+	border : none;
+	border-right : 0px;
+	border-left : 0px;
+	border-top : 0px;
+	border-botton : 0px;
+}
+</style>
 </head>
 <body>
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
 <form method="post" action="/noticeUpdate.do?noticeNum=${noticeVO.noticeNum }&number=${number}">
-	<table id="writeNotice" width="90%" height="70" style="text-align:center;border:1px solid #dddddd">
-		<thead>
-			<tr><th colspan="2" style="background-color:#eeeeee; text-align:center;">NOTICE</th>
-		</thead>
+	<table>
+		<colgroup>
+			<col style="width:20%;">
+			<col>
+		</colgroup>
 		<tbody>
-			<tr>
-				<td size="15%">제목</td>
-				<td><input type="text" class="form-control" width="90%" placeholder="글 제목"
-					size="80%" maxlength="100" name="noticeTitle" /></td>
-			</tr>
-			<tr>
-				<td size="15%">작성자</td>
-				<td>${noticeVO.noticeWriter}</td>
-			</tr>
-			<tr>
-				<td size="15%">글 내용</td>
-				<td><input type="text" placeholder="글내용 " name="noticeContent" maxlength="2500" 
-				size="80%"></input></td>
-			</tr>
-		</tbody>
+ 			 <tr>
+    			<td class="thead" colspan="2">공지사항 작성하기</td>
+  			</tr>
+  			<tr>
+    			<td>제목</td>
+    			<td><input type="text" placeholder="글 제목" name="noticeTitle" size="50"/></td>
+  			</tr>
+  			<tr> 
+   	 			<td>내용</td>
+    			<td><textarea name="noticeContent" cols="52" rows="20">내용을 입력하세요</textarea></td>
+  			</tr>
+  		</tbody>
 	</table>
-	<input type="submit" value="수정하기">
+	<div id="inputDiv">
+		<input type="submit" id="inputSubmit" value="수정하기">
+	</div>
 </form>
 <footer>
 		<%@ include file="/template/bottom.jsp" %>

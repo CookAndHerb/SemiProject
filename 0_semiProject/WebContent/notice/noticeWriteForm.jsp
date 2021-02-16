@@ -18,7 +18,7 @@ table {
   	table-layout: fixed;
 }
 
-table thead {
+.thead {
 	text-align : center;
 	font-size : 35px;
 	border-bottom: 3px solid #b0c364;
@@ -32,10 +32,9 @@ table th {
   	border-bottom: 1px solid #ccc;
 }
 table td {
-	width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
+  	padding: 10px;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
 }
 
 #inputDiv {
@@ -62,19 +61,21 @@ table td {
 
 <form method="post" action="/writeNotice.do">
 	<table>
-  		<thead>
+		<colgroup>
+			<col style="width:20%;">
+			<col>
+		</colgroup>
+		<tbody>
  			 <tr>
-    			<th colspan="2" scope="cols">공지사항 작성하기</th>
+    			<td class="thead" colspan="2">공지사항 작성하기</td>
   			</tr>
- 		 </thead>
- 		 <tbody>
   			<tr>
-    			<th width="20%" scope="row">제목</th>
+    			<td>제목</td>
     			<td><input type="text" placeholder="글 제목" name="noticeTitle" size="50"/></td>
   			</tr>
-  			<tr>
-   	 		<th width="20%" scope="row">내용</th>
-    			<td><textarea name="noticeContent" cols="40" rows="20">내용을 입력하세요</textarea></td>
+  			<tr> 
+   	 			<td>내용</td>
+    			<td><textarea name="noticeContent" cols="52" rows="20">내용을 입력하세요</textarea></td>
   			</tr>
   		</tbody>
 	</table>
