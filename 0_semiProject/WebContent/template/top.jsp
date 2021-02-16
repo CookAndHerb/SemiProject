@@ -109,7 +109,8 @@
                                             <li><a href="/RboardAllList.do?category=9">기타</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/resources/single-post.html">Notice</a></li>
+
+                                    <li><a href="/noticeAllList.do">Notice</a></li>
                                     <li><a href="/mBoardList.do">Cook & Talk</a></li>
                                     <li><a href="/aBoardListServlet.do">Cook Q&A</a></li>
                                 </ul>
