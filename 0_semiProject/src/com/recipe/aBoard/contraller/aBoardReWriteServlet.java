@@ -36,10 +36,6 @@ public class aBoardReWriteServlet extends HttpServlet {
 		vo.setRef(Integer.parseInt(request.getParameter("ref")));
 		vo.setReStep(Integer.parseInt(request.getParameter("reStep")));
 		vo.setReLevel(Integer.parseInt(request.getParameter("reLevel")));
-		System.out.println(vo.getRef());
-		System.out.println(vo.getReStep());
-		System.out.println(vo.getReLevel());
-		System.out.println("------------------------");
 		
 		int result = new aBoardService().reWriteBoard(vo);
 		

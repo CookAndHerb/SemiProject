@@ -95,6 +95,7 @@ public class MemberJoinEmailCheckServlet extends HttpServlet {
 		}
 		HttpSession saveKey = request.getSession();
 		saveKey.setAttribute("AuthenticationKey", AuthenticationKey);
+		
 		request.getRequestDispatcher("/views/memberJoin.jsp").forward(request, response);
 	}
 

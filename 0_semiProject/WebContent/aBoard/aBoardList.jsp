@@ -90,22 +90,17 @@
 	
 <div class="container">
 	<c:if test="${count>0}">
-			<!-- 카운터링 숫자를 얼마까지 보여줄건지 결정 -->
 			<c:set var="pageCount" value="${count /pageSize + (count%pageSize == 0 ? 0 : 1 )}" />
 			<c:set var="startPage" value="${1}" />
 			
 			<c:if test="${currentPage%5 != 0}">
-				<!--결과를 정수형으로 리턴 받아야 하기에 fmt  -->
 				<fmt:parseNumber var="result" value="${(currentPage-1)/5}" integerOnly="true"/>
 				<c:set var="startPage" value="${result*5+1}" />
 			</c:if>
-			
 			<c:if test="${currentPage%5 == 0}">
-				<!--결과를 정수형으로 리턴 받아야 하기에 fmt  -->
 				<c:set var="startPage" value="${result*5+1}" />
 			</c:if>
-			
-			<!-- 화면에 보여질 페이지 처리 숫자를 표현 -->
+
 			<c:set var="pageBlock" value="${5}" />
 			<c:set var="endPage" value="${startPage+pageBlock-1}" />
 			
@@ -113,15 +108,12 @@
 				<c:set var="endPage" value="${pageCount}" />
 			</c:if>
 			
-			<!-- 게시판 페이징 -->
 			<c:set var="keyword" value="${param.keyword}" />
 			<c:if test="${keyword == null}">
 			 <ul class="pagination justify-content-center" style="margin:20px 0">
-			 	<!-- 이전 -->
 				<c:if test="${startPage > pageBlock}">
 					<li class="page-item"><a class="page-link" href="/aBoardListServlet.do?pageNum=${startPage-5}">◀</a></li>
 				</c:if>
-				<!-- 페이지 숫자 -->
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 					<c:if test="${i==currentPage}">
 						<li class="page-item active"><a class="page-link" href="/aBoardListServlet.do?pageNum=${i}">${i}</a></li>
@@ -130,7 +122,6 @@
 						<li class="page-item"><a class="page-link" href="/aBoardListServlet.do?pageNum=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
-				<!-- 다음  -->
 				<c:if test="${endPage < pageCount}">
 					<li class="page-item"><a class="page-link" href="/aBoardListServlet.do?pageNum=${startPage+5}">▶</a></li>
 				</c:if>
