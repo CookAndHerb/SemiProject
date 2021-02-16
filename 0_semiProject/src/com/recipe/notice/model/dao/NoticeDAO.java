@@ -72,7 +72,6 @@ public class NoticeDAO {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, noticeVO.getNoticeTitle());
 			pstmt.setString(2, noticeVO.getNoticeContent());
-			//pstmt.setString(3, "김관리자");
 			pstmt.setString(3, noticeVO.getNoticeWriter());
 			result = pstmt.executeUpdate();
 			
@@ -378,7 +377,7 @@ public class NoticeDAO {
 		return postTotalCount;
 	}
 	
-	public ArrayList<NoticeVO> selectSearchNoticePageList(Connection conn, String searchMenu, String keyword, int currentPage, int recordCountPerPage){
+	public ArrayList<NoticeVO> selectSearchNoticePageList(Connection conn, String keyword, int currentPage, int recordCountPerPage){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -386,7 +385,7 @@ public class NoticeDAO {
 		int start = currentPage * recordCountPerPage - (recordCountPerPage -1);
 		int end = currentPage * recordCountPerPage;
 		String query = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY BOARD_NUM DESC)AS ROW_NUM, NOTICE.* "
-				+ "FROM NOTICE WHERE "+searchMenu+" LIKE ?) WHERE ROW_NUM BETWEEN ? AND ?";
+				+ "FROM NOTICE LIKE ?) WHERE ROW_NUM BETWEEN ? AND ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+keyword+"%");
@@ -416,11 +415,11 @@ public class NoticeDAO {
 	}
 	
 	
-	public int getSearchListCount(Connection conn, String searcMenu, String keyword) {
+	public int getSearchListCount(Connection conn , String keyword) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int postTotalCount =0 ;
-		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM NOTICE WHERE "+searcMenu+" LIKE ?";
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM NOTICE LIKE ?";
 		try {
 			
 		pstmt = conn.prepareStatement(query);

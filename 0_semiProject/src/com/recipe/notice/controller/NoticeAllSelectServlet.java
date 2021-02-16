@@ -75,7 +75,8 @@ public class NoticeAllSelectServlet extends HttpServlet {
 			request.setAttribute("count", count);
 			request.setAttribute("currentPage", currentPage);
 			
-			RequestDispatcher view = request.getRequestDispatcher("notice/noticeAllList.jsp");
+			RequestDispatcher view = 
+					request.getRequestDispatcher("notice/noticeAllList.jsp");
 			view.forward(request, response);
 		}
 	

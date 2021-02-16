@@ -45,9 +45,14 @@ table td {
 	text-align : center;
 	padding : 20px;
 }
-#inputDiv {
+.inputDiv {
 	font-size : 20px;
 	text-align : right;
+	padding : 20px;
+}
+.searchDiv {
+	font-size : 20px;
+	text-align : center;
 	padding : 20px;
 }
 .inputBtn {
@@ -57,6 +62,7 @@ table td {
 	border-left : 0px;
 	border-top : 0px;
 	border-botton : 0px;
+	color:white;
 }
 
 </style>
@@ -74,8 +80,9 @@ table td {
 	if(mvo != null && mvo.getUserNum() < 1000){
 	%>0
  
-	<div id="inputDiv">
-  		<input type="button" class="inputBtn" onclick="location.href='notice/noticeWriteForm.jsp'" value="글쓰기">
+	<div class="inputDiv">
+  		<input type="button" class="inputBtn"  value="글쓰기"
+  		onclick="location.href='notice/noticeWriteForm.jsp'">
   </div>
   <%} %>
   
@@ -100,7 +107,9 @@ table td {
 			<c:forEach var="noticeVO" items="${ list }">
 			<tr>
 				<td width="10%">${number }</td>
-				<td width="52%"><a href="/detailNotice.do?noticeNum=${noticeVO.noticeNum}&number=${number}">${noticeVO.noticeTitle }</a></td>
+				<td width="52%">
+				<a href="/detailNotice.do?noticeNum=${noticeVO.noticeNum}
+				&number=${number}">${noticeVO.noticeTitle }</a></td>
 				<td width="16%">${ noticeVO.noticeWriter }</td>
 				<td width="19%">${ noticeVO.noticeDate }</td>
 				<c:set var="number" value="${number-1 }" />
@@ -108,10 +117,10 @@ table td {
 			</c:forEach>
 		</table>
 		
-	<div id="searchDiv">
+	<div class="searchDiv">
 		<form action="/searchNotice.do" method="get">
 			<input type="text" name="keyword"/>
-			<input type="submit" value="검색" id="inputBtn"/>
+			<input type="submit" value="검색" class="inputBtn"/>
 		</form>
 	</div>
 	

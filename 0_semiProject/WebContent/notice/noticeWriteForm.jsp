@@ -1,3 +1,4 @@
+<%@page import="com.recipe.member.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,6 +50,7 @@ table td {
 	border-left : 0px;
 	border-top : 0px;
 	border-botton : 0px;
+	color:white;
 }
 
 
@@ -58,7 +60,6 @@ table td {
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
-
 <form method="post" action="/writeNotice.do">
 	<table>
 		<colgroup>

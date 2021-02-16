@@ -80,13 +80,13 @@ public class NoticeService {
 		return result;
 	}
 	
-	public ArrayList<NoticeVO> selectSearchBoardPage(String searchCategory, String keyword, int currentPage, int recordCountPerPage){
+	public ArrayList<NoticeVO> selectSearchBoardPage(String keyword, int currentPage, int recordCountPerPage){
 		Connection conn = JDBCTemplate.getConnection();
 		
 		
 		NoticeDAO noticeDAO = new NoticeDAO();
 		ArrayList<NoticeVO> list = 
-				noticeDAO.selectSearchNoticePageList(conn, searchCategory, keyword, currentPage, recordCountPerPage);
+				noticeDAO.selectSearchNoticePageList(conn, keyword, currentPage, recordCountPerPage);
 		
 		// 아래 코드는 데이터가 잘 넘어 왔는지 확인용도의 임시코드, 확인 후 삭제 예정
 		for(NoticeVO noticeVO : list) {
@@ -97,11 +97,11 @@ public class NoticeService {
 		return list;
 	}
 	
-	public int getSearchListCount(String searchCategory, String keyword) {
+	public int getSearchListCount(String keyword) {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		NoticeDAO rboardDAO = new NoticeDAO();
-		int postTotalCount = rboardDAO.getSearchListCount(conn, searchCategory, keyword);
+		int postTotalCount = rboardDAO.getSearchListCount(conn, keyword);
 		
 		// 아래 코드는 데이터가 잘 넘어왔는지 확인 용도 임시코드
 		// System.out.println("postTotalCount"+postTotalCount);
@@ -109,13 +109,13 @@ public class NoticeService {
 		
 	}
 	 
-	public ArrayList<NoticeVO> selectSearchNoticePage(String searchCategory, String keyword, int currentPage, int recordCountPerPage){
+	public ArrayList<NoticeVO> selectSearchNoticePage(String keyword, int currentPage, int recordCountPerPage){
 		Connection conn = JDBCTemplate.getConnection();
 		
 		
 		NoticeDAO rboardDAO = new NoticeDAO();
 		ArrayList<NoticeVO> list = 
-				rboardDAO.selectSearchNoticePageList(conn, searchCategory, keyword, currentPage, recordCountPerPage);
+				rboardDAO.selectSearchNoticePageList(conn, keyword, currentPage, recordCountPerPage);
 		
 		// 아래 코드는 데이터가 잘 넘어 왔는지 확인용도의 임시코드, 확인 후 삭제 예정
 		for(NoticeVO board : list) {

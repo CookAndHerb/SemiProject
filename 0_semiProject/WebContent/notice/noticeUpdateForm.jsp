@@ -49,6 +49,7 @@ table td {
 	border-left : 0px;
 	border-top : 0px;
 	border-botton : 0px;
+	color: white;
 }
 </style>
 </head>

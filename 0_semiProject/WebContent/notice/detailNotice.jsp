@@ -44,6 +44,7 @@ table td {
 	border-left : 0px;
 	border-top : 0px;
 	border-botton : 0px;
+	color: white;
 }
 </style>
 </head>
@@ -70,7 +71,7 @@ table td {
 			</tr>
 			<tr>
 				<td class="theader">글 내용</td>
-				<td>${noticeVO.noticeContent}</td>
+				<td colspan="3">${noticeVO.noticeContent}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -31,14 +31,8 @@ public class NoticeSearchServlet extends HttpServlet{
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String searchMenu = request.getParameter("searchMenu");
 		String keyword = request.getParameter("keyword");
 		
-		if(searchMenu.contentEquals("noticeTitle")) {
-			searchMenu = "NOTICE_TITLE";
-		} else {
-			
-		}
 		
 		int currentPage;
 		if(request.getParameter("currentPage")==null) {
@@ -48,9 +42,9 @@ public class NoticeSearchServlet extends HttpServlet{
 		}
 		int recordCountPerPage = 10;
 		
-		ArrayList<NoticeVO> list = new NoticeService().selectSearchNoticePage(searchMenu, keyword, currentPage, recordCountPerPage);
+		ArrayList<NoticeVO> list = new NoticeService().selectSearchNoticePage(keyword, currentPage, recordCountPerPage);
 		
-		int postTotalCount = new NoticeService().getSearchListCount(searchMenu, keyword);
+		int postTotalCount = new NoticeService().getSearchListCount(keyword);
 		int pageTotalCount = 0;
 		
 		if(postTotalCount % recordCountPerPage > 0) {
@@ -71,7 +65,6 @@ public class NoticeSearchServlet extends HttpServlet{
 		RequestDispatcher view = request.getRequestDispatcher("/notice/noticeSearchList.jsp");
 		request.setAttribute("pageinfo", pageinfo);                                                        
 		request.setAttribute("list", list);  
-		request.setAttribute("searchMenu",searchMenu);
 		request.setAttribute("keyword",keyword);
 		view.forward(request, response);
 		
