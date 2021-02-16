@@ -19,6 +19,11 @@
 		font-weight: normal;
 		color: #b0c364;
 	}
+	#idBtn{
+		background: #b0c364;
+		color: white;
+	}
+
 </style>
 
 </head>
@@ -44,7 +49,7 @@
                 <div class="form-inline">
                   <input type="text" class="form-control col-12" placeholder="번호를 입력하세요('-'제외)" name="userPhone" required>
                 </div><br>
-                <button type="submit" class="btn btn-light btn-block ">ID 찾기</button>
+                <button type="submit" class="btn btn-light btn-block " id="idBtn">ID 찾기</button>
                 <div class="form-group form-check float-right">                  
                 </div>
               </form>

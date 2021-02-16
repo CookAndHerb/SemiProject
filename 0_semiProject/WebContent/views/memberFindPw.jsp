@@ -25,10 +25,14 @@
 		display: none;
 	}
 	#getKey, #keyBtn{
+		color: #b0c364;
+		border: 1px solid #b0c364;
+		background: white;
+	}
+	#submitBtn{
 		background: #b0c364;
 		color: white;
 	}
-
 </style>
 
 </head>
@@ -56,11 +60,11 @@
                 </div>
                 <br>
                 <div class="form-inline">
-                  <input type="email" class="form-control col-8" placeholder="이메일을 입력하세요" id="userEmail" name="userEmail" required>
-                  <input type="button" class="btn btn-light btn-block col-4" id="keyBtn" value="인증번호 발송" ><br><br>
+                  <input type="email" class="form-control col-9" placeholder="이메일을 입력하세요" id="userEmail" name="userEmail" required>
+                  <input type="button" class="btn btn-light btn-block col-3" id="keyBtn" value="인증번호" ><br><br>
                   <p id="waitmsg">전송완료 창이 뜰 때까지 잠시만 기다려주세요.</p>
-                  <input type="text" class="form-control col-8" id="key" placeholder="인증번호를 입력하세요" name="authenticationUser">
-                  <input type="button" class="btn btn-light btn-block col-4" id="getKey" value="확인"><br><br>
+                  <input type="text" class="form-control col-9" id="key" placeholder="인증번호를 입력하세요" name="authenticationUser">
+                  <input type="button" class="btn btn-light btn-block col-3" id="getKey" value="확인"><br><br>
                 </div><br>
                 <button type="submit" class="btn btn-light btn-block" id="submitBtn" disabled>비밀번호 변경</button>
                 <div class="form-group form-check float-right">                  
