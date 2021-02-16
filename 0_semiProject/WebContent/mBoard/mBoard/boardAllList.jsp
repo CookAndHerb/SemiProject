@@ -120,6 +120,7 @@ onclick="location.href='?page=<%=endPage+1 %>'">
 --%>
 
 
+<%@page import="com.recipe.member.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -149,24 +150,26 @@ function WriteForm(){
 -->
 </head>
 <body>
+<% MemberVO mvo = (MemberVO)session.getAttribute("member"); 
+	System.out.println(mvo);  %>
 
   <h2>COOK&TALK</h2>
   <p>COOK&TALK 자유게시판 입니다</p> 
   
  
 	
-	<div class="form-row float-right">
+	<div class="form-row">
 
-  <c:if test="${sessionScope.sessionID!=null}"> <!-- 로그인 했을 경우 글쓰기 버튼 보여줌 -->
-         
-        </c:if>    
+         <c:if test="${not empty member}"> <!-- 로그인 했을 경우 글쓰기 버튼 보여줌 -->
+ <button onclick="location.href ='/mBoard/mBoard/WriteForm.jsp'">글작성</button> 
+	</c:if>  		
+          
         <text align="center">
     </div>
     
 	<table width="800" border="1">
 		<tr height="30">
 			<td colspan="5" align="right">
- <button onclick="location.href ='/mBoard/WriteForm.jsp'">글작성</button> 
 			
 			</td>
 		</tr>
@@ -178,7 +181,7 @@ function WriteForm(){
 			<td width="70" align="center">조회수</td>
 		</tr>
 		<c:set var="number" value="${number}" />
-		<c:forEach var="v" items="${v}">
+		<c:forEach var="v" items="${list}">
 			
 			<tr height="30">
 				<td width="40" align="center">${v.boardNUM}</td>
@@ -186,14 +189,15 @@ function WriteForm(){
 					
 				<a href="/mBoardInfo.do?num=${v.boardNUM}">${v.boardTitle}</a>
 				</td>
-				<td width="150" align="Left">${v.boardDate}</td>
+				<td width="150" align="Left">${v.boardWriter}</td>
+				<td width="80" align="Left">${v.boardDate}</td>
 				<td width="80" align="Left">${v.boardHit}</td>
 			</tr>
 			<c:set var="number" value="${number-1}" />
 		</c:forEach>
 	</table>
 	
-	<p>
+	<%-- <p>
 	<c:if test="${count>0}">
 			<c:set var="pageCount" value="${count /pageSize + (count%pageSize == 0 ? 0 : 1 )}" />
 			<c:set var="startPage" value="${1}" />
@@ -228,7 +232,83 @@ function WriteForm(){
 				<a href="/mBoardList.do?pageNum=${startPage+5}">[▶]</a>
 			</c:if>
 		</c:if>
-	</p>
+	</p> --%>
+	
+	<div class="container">
+	<c:if test="${count>0}">
+			<!-- 카운터링 숫자를 얼마까지 보여줄건지 결정 -->
+			<c:set var="pageCount" value="${count /pageSize + (count%pageSize == 0 ? 0 : 1 )}" />
+			<c:set var="startPage" value="${1}" />
+			
+			<c:if test="${currentPage%5 != 0}">
+				<!--결과를 정수형으로 리턴 받아야 하기에 fmt  -->
+				<fmt:parseNumber var="result" value="${(currentPage-1)/5}" integerOnly="true"/>
+				<c:set var="startPage" value="${result*5+1}" />
+			</c:if>
+			
+			<c:if test="${currentPage%5 == 0}">
+				<!--결과를 정수형으로 리턴 받아야 하기에 fmt  -->
+				<c:set var="startPage" value="${result*5+1}" />
+			</c:if>
+			
+			<!-- 화면에 보여질 페이지 처리 숫자를 표현 -->
+			<c:set var="pageBlock" value="${5}" />
+			<c:set var="endPage" value="${startPage+pageBlock-1}" />
+			
+			<c:if test="${endPage > pageCount}">
+				<c:set var="endPage" value="${pageCount}" />
+			</c:if>
+			
+			<!-- 게시판 페이징 -->
+			<c:set var="keyword" value="${param.keyword}" />
+			<c:if test="${keyword == null}">
+			 <ul class="pagination justify-content-center" style="margin:20px 0">
+			 	<!-- 이전 -->
+				<c:if test="${startPage > pageBlock}">
+					<li class="page-item"><a class="page-link" href="/boardAllList.do?pageNum=${startPage-5}">◀</a></li>
+				</c:if>
+				<!-- 페이지 숫자 -->
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<c:if test="${i==currentPage}">
+						<li class="page-item active"><a class="page-link" href="/boardAllList.do?pageNum=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${i!=currentPage}">
+						<li class="page-item"><a class="page-link" href="/boardAllList.do?pageNum=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				<!-- 다음  -->
+				<c:if test="${endPage < pageCount}">
+					<li class="page-item"><a class="page-link" href="/boardAllList.do?pageNum=${startPage+5}">▶</a></li>
+				</c:if>
+			</ul>
+			</c:if>
+			
+			<!-- 검색 시 페이징 -->
+			<c:if test="${keyword != null}">
+			 <ul class="pagination justify-content-center" style="margin:60px 0">
+			 	<!-- 이전 -->
+				<c:if test="${startPage > pageBlock}">
+					<li class="page-item"><a class="page-link" href="/aBoardSearch.do?keyword=${keyword}&pageNum=${startPage-5}">◀</a></li>
+				</c:if>
+				<!-- 페이지 숫자 -->
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<c:if test="${i==currentPage}">
+						<li class="page-item active"><a class="page-link" href="/aBoardSearch.do?keyword=${keyword}&pageNum=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${i!=currentPage}">
+						<li class="page-item "><a class="page-link" href="/aBoardSearch.do?keyword=${keyword}&pageNum=${i}">${i}</a></li>
+					</c:if>
+				</c:forEach>
+				
+				<!-- 다음  -->
+				<c:if test="${endPage < pageCount}">
+					<li class="page-item"><a class="page-link" href="/aBoardSearch.do?keyword=${keyword}&pageNum=${startPage+5}">▶</a></li>
+				</c:if>
+			</ul>
+			</c:if>
+		</c:if>
+	</div>
+	
 	<form name="searchForm" id="searchForm" method="get">
 					<input type="hidden" name="page" id="page" value="1">
 					<input type="hidden" name="codeSeq" id="codeSeq" value="48">

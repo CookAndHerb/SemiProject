@@ -16,7 +16,7 @@
 			</div>
 	  	</div>
 	</div>
-		<input type ="hidden" name ="num" value="${vo.boardNum}">
+		<input type ="hidden" name ="num" value="${vo.boardNUM}">
 
 	</form>
 </body>

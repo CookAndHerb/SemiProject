@@ -33,7 +33,9 @@ public class mBoardUpdateNo extends HttpServlet {
 		mBoardVO vo = ms.getOneUpdateBoard(num);
 		request.setAttribute("vo", vo);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/mBoard/Update.jsp");
+		request.getRequestDispatcher("/mBoard/mBoard/updateSuccess.jsp").forward(request, response);
+		
+		RequestDispatcher dis = request.getRequestDispatcher("/mBoard/mBoard/Update.jsp");
 		dis.forward(request ,response);
 	}
 

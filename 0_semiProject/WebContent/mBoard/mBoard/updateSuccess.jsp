@@ -9,9 +9,9 @@
 <body>
 
 
-<%
+<%--  <%
 	int num = (int)request.getAttribute("num");
-%>
+%>  --%>
 
 <script>
 	alert(" 수정 성공");

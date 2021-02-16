@@ -35,8 +35,7 @@ public class mBoardInfo extends HttpServlet {
 		
 		request.setAttribute("vo", vo);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/mBoard/detailpage.jsp");
-		dis.forward(request ,response);
+		request.getRequestDispatcher("/mBoard/mBoard/detailpage.jsp").forward(request, response);
 	}
 
 }

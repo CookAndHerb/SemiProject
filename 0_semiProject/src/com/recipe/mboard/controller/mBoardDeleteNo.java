@@ -31,7 +31,7 @@ public class mBoardDeleteNo extends HttpServlet {
 
 		request.setAttribute("vo", vo);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/mBoard/deleteForm.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/mBoard/mBoard/deleteForm.jsp");
 		dis.forward(request ,response);
 	}
 

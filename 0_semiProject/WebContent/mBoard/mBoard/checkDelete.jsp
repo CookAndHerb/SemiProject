@@ -14,11 +14,11 @@
 <script>
 		result = window.confirm("게시글을 삭제하시겠습니까?");
 		if (result == true) {
-			location.replace("/mBoardDeleteNo.do?num=<%=num%>");
+			location.replace("/mBoardDelete.do?num=${num}");
 		
 		
 		}else{
-			location.replace("/mBoardList.do");
+			location.replace("/mBoardInfo.do?num=${num}");
 		}
 </script>
 

@@ -31,8 +31,8 @@
 
 		<tr height="40">
 			<td align="center" colspan="4">
-				<input type="button" value="수정하기" onclick="location.href='/mBoardUpdateNo.do?num=${vo.boardNum}'">
-				<input type="button" value="삭제하기" onclick="location.href='/mBoard/checkDelete.jsp?num=${vo.boardNum}'">
+				<input type="button" value="수정하기" onclick="location.href='/mBoardUpdateNo.do?num=${vo.boardNUM}'">
+				<input type="button" value="삭제하기" onclick="location.href='/mBoard/mBoard/checkDelete.jsp?num=${vo.boardNUM}'">
 				
 			</td>
 		</tr>

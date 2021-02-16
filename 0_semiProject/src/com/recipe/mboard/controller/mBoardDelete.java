@@ -79,17 +79,18 @@ public class mBoardDelete extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// 페이지에서 보내온 글번호 저장
-		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
+		int boardNum = Integer.parseInt(request.getParameter("num"));
 	//	int category = Integer.parseInt(request.getParameter("category"));
+		
 		// 삭제 로직 수행
 		mBoardService ms = new mBoardService();
 		int result = ms.deleteBoard(boardNum);
 		if(result > 0 ) { // 삭제 성공했을 시
 			
-			response.sendRedirect("/mBoardList.do?num="+boardNum);
+			response.sendRedirect("/mBoardList.do");
 			
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/mBoard/DelFail.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/mBoard/mBoard/DelFail.jsp");
 			view.forward(request, response);
 		}
 
