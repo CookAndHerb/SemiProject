@@ -66,16 +66,22 @@
 	.table-borderless td{
 		font-size: 16px;
 		font-weight: bold;
-		font-color: lightgray;
 	}
 	h1{
 		text-align: center; 
-		padding-bottom: 40px;
+		padding-bottom: 30px;
 	}
-	.border{
-		border: 1px solid black;
-		width: 850px;
-		margin-bottom: 20px;
+	.border1{
+		border: 1px solid #d3d3d3;
+		width: 900px;
+		margin-bottom: 40px;
+		box-shadow: 0 0 0 1px #d3d3d3 inset; 
+	}
+	.border2{
+		border: 1px solid #d3d3d3;
+		width: 900px;
+		box-shadow: 0 0 0 1px #d3d3d3 inset;
+		margin-bottom: 30px;
 	}
 
 </style>
@@ -88,12 +94,13 @@
 <div class="form-group row justify-content-center">
 	<form action="/memberJoin.do" method="post" class="needs-validation" onsubmit="return check()" novalidate>
 		<h1>회원가입</h1>
-		<div class="border"></div>
+		<div class="border1"></div>
 		<table class="table-borderless" style="margin: 0 250px 0 50px; ">
 			<tr class="d-flex">
 				<td class="col-4"><label for="userId">아이디</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userId" id="userId" class="form-control col-xs-10" placeholder="아이디를 입력해 주세요" onkeyup="idCheckFunction();"required>
+					<input type="text" name="userId" id="userId" class="form-control col-xs-10" 
+					placeholder="아이디를 입력해 주세요" onkeyup="idCheckFunction();"required>
 				</td>
 				<td>
 					<input type="button" name="idCheck" value="중복확인" id="idCheck" class="btn btn-outline-success px-4">
@@ -105,7 +112,8 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userPW">비밀번호</label></td>
 				<td class="col-sm-12">
-					<input type="password" name="userPw" class="form-control" id="userPw" placeholder="비밀번호를 입력해 주세요" onkeyup="pwCheckFunction();" required>
+					<input type="password" name="userPw" class="form-control" id="userPw" 
+					placeholder="비밀번호를 입력해 주세요" onkeyup="pwCheckFunction();" required>
 				</td>
 			</tr>
 			<tr>
@@ -113,7 +121,8 @@
 			</tr>
 			<tr class="d-flex">
 				<td class="col-4"><label for="userPwRe">비밀번호 확인</label></td>
-				<td class="col-sm-12"><input type="password" name="userPwRe" id="userPwRe" class="form-control" onkeyup="passwordCheckFunction();" placeholder="비밀번호를 한 번 더 입력해 주세요" required>
+				<td class="col-sm-12"><input type="password" name="userPwRe" id="userPwRe" 
+				class="form-control" onkeyup="passwordCheckFunction();" placeholder="비밀번호를 한 번 더 입력해 주세요" required>
 				</td>
 			</tr>
 			<tr>
@@ -128,10 +137,12 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userEmail">이메일</label></td>
 				<td class="col-sm-12">
-					<input type="email" name="userEmail" id="userEmail" class="form-control" placeholder="ex)cook@cook.com" required>
+					<input type="email" name="userEmail" id="userEmail" class="form-control" 
+					placeholder="ex)cook@cook.com" required>
 				</td>
 				<td>
-					<input type="button" name="emailCheck" id="emailCheck" value="인증번호" class="btn btn-outline-success px-4">
+					<input type="button" name="emailCheck" id="emailCheck" value="인증번호" 
+					class="btn btn-outline-success px-4">
 				</td>
 			</tr>
 			<tr>
@@ -140,11 +151,16 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userEmailNum">인증번호</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userEmailNum" id="userEmailNum" class="form-control" placeholder="인증번호를 입력해 주세요" required>
+					<input type="text" name="userEmailNum" id="userEmailNum" class="form-control"
+					 placeholder="인증번호를 입력해 주세요" required>
 				</td>
 				<td>
-					<input type="button" name="emailCheckNum" id="emailCheckNum" value="인증하기" class="btn btn-outline-success px-4">
+					<input type="button" name="emailCheckNum" id="emailCheckNum" value="인증하기" 
+					class="btn btn-outline-success px-4">
 				</td>
+			</tr>
+			<tr>
+				<td><span id="emailNumCheckMessage" style="color:red; font-weight:bold"></span></td>
 			</tr>
 			<tr class="d-flex">
 				<td class="col-4">성별</td>
@@ -169,7 +185,8 @@
 			<tr class="d-flex" >
 				<td class="col-4"><label for="userBirth">생년월일</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userBirth" placeholder="숫자만 입력해 주세요" class="form-control" required>
+					<input type="text" name="userBirth" placeholder="숫자만 입력해 주세요"
+					onkeyup="birthCheckFunction();" class="form-control" required>
 				</td>
 			</tr>
 			<tr>
@@ -178,14 +195,15 @@
 			<tr class="d-flex">
 				<td class="col-4"><label for="userPhone">전화번호</label></td>
 				<td class="col-sm-12">
-					<input type="text" name="userPhone" placeholder="숫자만 입력해 주세요" class="form-control" required>
+					<input type="text" name="userPhone" placeholder="숫자만 입력해 주세요" 
+					onkeyup="phoneCheckFunction();" class="form-control" required>
 				</td>
 			</tr>
 			<tr>
 				<td><span id="phoneCheckMessage" style="color:red; font-weight:bold; padding:10px;"></span></td>
 			</tr>
 		</table>
-		<div class="border"></div>
+		<div class="border2"></div>
 		<div class="btn d-flex justify-content-center" style=" padding-top: 40px;">
 			<input type="submit" id="join_btn" value="가입하기" class="btn btn-primary btn-lg" disabled="disabled">
 		</div>
@@ -239,6 +257,10 @@
 	$('#idCheck').on("click", function(){
 		$("input[name=checkedId]").val('y');
 		var userId = $("#userId").val();
+		if(userId == ''){
+			$('#idCheckMessage').html('아이디를 입력해 주세요');
+			return false;
+		}
 		$.ajax({
 			type: 'POST',
 			url: '/MemberJoinIdCheck.do', 
@@ -258,6 +280,10 @@
 	$('#NicknameCheck').on("click", function(){
 		$("input[name=checkedNickname]").val('y');
 		var userNickname = $("#userNickname").val();
+		if(userNickname == ''){
+			$('#NicknameCheckMessage').html('닉네임을 입력해 주세요');
+			return false;
+		}
 		$.ajax({
 			type: 'POST', 
 			url: '/MemberJoinNicknameCheck.do',
@@ -276,10 +302,16 @@
 	});
 	// 이메일 인증번호 전송
 	$('#emailCheck').on("click", function(){
-		$("input[name=checkedEmail]").val('y');
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		var userEmail = $("#userEmail").val();
+		
+		$("input[name=checkedEmail]").val('y');
+		
 		if(userEmail == ''){
 			$('#emailCheckMessage').html('이메일을 입력해 주세요');
+			return false;
+		}else if(!regExp.test(userEmail)){
+			$('#emailCheckMessage').html('올바르지 않은 이메일 주소입니다.');
 			return false;
 		}
 		$.ajax({
@@ -295,6 +327,10 @@
 	$('#emailCheckNum').on("click", function(){
 		$("input[name=checkedEmailNum]").val('y');
 		var userEmailNum = $("#userEmailNum").val();
+		if(userEmailNum == ''){
+			$('#emailNumCheckMessage').html('인증번호를 입력해 주세요');
+			return false;
+		}
 		$.ajax({
 			type: 'get', 
 			url: '/MemberJoinEmailCheckNum.do',
@@ -346,10 +382,9 @@
 	}
 	function phoneCheckFunction(){
 		var userPhone = $('input[name=userPhone]');
-		var phonePattern = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
-		if (phonePattern.test(userPhone.val())) {
+		if (/(^02.{0}|^01.{1}|[0-9]{4})([0-9]+)([0-9]{7})/g.test(userPhone.val())) {
 			$('#phoneCheckMessage').html('');
-			  $("#join_btn").removeAttr("disabled");
+			$("#join_btn").removeAttr("disabled");
 		}else{
 			$('#phoneCheckMessage').html('휴대폰번호 11자리 입력  ex)01012345678');
 			$("#join_btn").attr("disabled", "disabled");
