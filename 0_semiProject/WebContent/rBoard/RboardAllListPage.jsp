@@ -223,10 +223,11 @@ section#content_body {
 
 <c:choose>
 	<c:when  test="${pageinfo.endNavi == pageinfo.pageTotalCount}">
-            <li class="page-item disabled"><a class="page-link" href="#">▶</a></li>
+            <li class="page-item disabled" ><a class="page-link" href="#">▶</a></li>
+            
   	</c:when>
 	<c:otherwise>
-	 <li class="page-item"><a class="page-link" href="/RboardAllList.do?category=${category}&currentPage=${pageinfo.currentPage+1}">▶</a></li>
+	 <li class="page-item"><a class="page-link" href="/RboardAllList.do?category=${category}&currentPage=${pageinfo.endNavi+1}">▶</a></li>
 	</c:otherwise>
 </c:choose>    
 </ul>
