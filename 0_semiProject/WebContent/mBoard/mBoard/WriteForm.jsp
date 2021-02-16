@@ -10,23 +10,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>게시판 테스트</title>
-
     <meta charset="UTF-8">
-
     <meta name="description" content="">
-
     <meta name="keywords" content="">
-
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-
-    <script language = "javascript">
-
-  
-   </script>
-
-    <style>
-
+    <script language = "javascript"></script>
+<title>Cook & Talk 글 작성 페이지</title>
+<style>
       .body{
 
         width:1100px;
@@ -36,6 +26,10 @@
         text-align: center;
 
       }
+      .text{
+		color:  #b0c364;
+		text-align: center;
+    	}
 
       .body, .body td, .body th{ border-collapse: collapse; border:1px solid black; box-sizing: border-box;}
 
@@ -52,16 +46,14 @@
     </style>
 </head>
 <body>
-<div class="container">
-  <h2>COOK&TALK</h2>
-  <p>COOK&TALK 자유게시판 입니다</p>  
-  
-<form action="/mBoardWrite.do" method="post">
-
+<header id="top_section">
+		<%@ include file="/template/top.jsp" %>
+</header>
+<h2 class="board_title" align="center" style="margin: 20px 0px 0;">Cook & Talk</h2>
+<p align="center" style="margin-bottom: 30px">Cook&Talk 자유게시판 입니다</p>  
+  <form action="/mBoardWrite.do" method="post" class="justify-content-center">
     <table class="body">
-
       <tr>
-
         <th>글제목</th>
 
         <td><input type="text" id="board_title" name="board_title"></td>
