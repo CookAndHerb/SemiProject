@@ -7,43 +7,85 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+table {
+	border-collapse: separate;
+  	border-spacing: 1px;
+  	text-align: left;
+  	line-height: 1.5;
+  	border: 1px solid #ccc;
+  	margin: 20px 10px;
+
+}
+.theader {
+	width: 150px;
+  	padding: 10px;
+  	font-weight: bold;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
+  	background: #deeda1;
+}
+table td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+#inputDiv {
+	font-size : 20px;
+	text-align : center;
+	padding : 20px;
+}
+
+.inputBtn {
+	background : #b0c364;
+	border : none;
+	border-right : 0px;
+	border-left : 0px;
+	border-top : 0px;
+	border-botton : 0px;
+	color: white;
+}
+</style>
 </head>
 <body>
-<%
-	MemberVO m = (MemberVO)session.getAttribute("member");
-%>
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
 <form method="post" action="/detailNotice.do">
-	<table id="writeNotice" width="90%" height="70" style="text-align:center;border:1px solid #dddddd">
+	<table id="writeNotice" width="90%" style="text-align:center;border:1px solid #dddddd">
 		<tbody>
 			<tr>
-				<td>제목</td>
-				<td>${noticeVO.noticeTitle}</td>
+				<td class="theader">제목</td>
+				<td colspan="3">${noticeVO.noticeTitle}</td>
 			</tr>
 			<tr>
-				<td width="10%">글번호</td>
-				<td width="40%">${number}</td>
-				<td width="10%">작성자</td>
-				<td width="40%">${noticeVO.noticeWriter}</td>
+				<td class="theader">글번호</td>
+				<td>${number}</td>
+				<td class="theader">작성자</td>
+				<td>${noticeVO.noticeWriter}</td>
 			</tr>
 			<tr>
-				<td>작성일</td>
-				<td>${noticeVO.noticeDate}</td>
+				<td class="theader">작성일</td>
+				<td colspan="3">${noticeVO.noticeDate}</td>
 			</tr>
 			<tr>
-				<td>글 내용</td>
-				<td>${noticeVO.noticeContent}</td>
+				<td class="theader">글 내용</td>
+				<td colspan="3">${noticeVO.noticeContent}</td>
 			</tr>
 		</tbody>
 	</table>
 	<div>
-		<c:if test="${m.getUserNum() < 1000 }">
-			<input type="button" value="글수정" onclick="location.href='/noticeUpdateReady.do?noticeNum=${ noticeVO.noticeNum }&number=${number }'" />
-			<input type="button" value="글삭제" onclick="location.href='/noticeDelete.do?noticeNum=${ noticeVO.noticeNum }'" />
-		</c:if>
-		<input type="button" value="글목록" onclick="location.href='/noticeAllList.do'" />
+	<div id="inputDiv">
+	<% MemberVO mvo = (MemberVO)session.getAttribute("member"); // 로그인 돼있는 경우만 글쓰기 버튼 보이도록
+	
+	if(mvo != null && mvo.getUserNum() < 1000){
+	%>
+			<input type="button" value="글수정" class="inputBtn" onclick="location.href='/noticeUpdateReady.do?noticeNum=${ noticeVO.noticeNum }&number=${number }'" />
+			<input type="button" value="글삭제" class="inputBtn" onclick="location.href='/noticeDelete.do?noticeNum=${ noticeVO.noticeNum }'" />
+	<%} %>	
+			<input type="button" value="글목록" class="inputBtn" onclick="location.href='/noticeAllList.do'" />
+	</div>
 	</div>
 </form>
 <footer>

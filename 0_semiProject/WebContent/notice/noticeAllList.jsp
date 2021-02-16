@@ -16,28 +16,28 @@ table {
 	text-align: center;
 	padding : 20px;
 	border-collapse: collapse;
-  text-align: left;
-  line-height: 1.5;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  margin: 20px 10px;
+  	text-align: left;
+  	line-height: 1.5;
+  	border-top: 1px solid #ccc;
+  	border-bottom: 1px solid #ccc;
+  	margin: 20px 10px;
 }
 
 
 table td {
 	width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
+  	padding: 10px;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
 }
 
 .header {
 	width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
-  background: #deeda1;
+  	padding: 10px;
+  	font-weight: bold;
+  	vertical-align: top;
+  	border-bottom: 1px solid #ccc;
+  	background: #deeda1;
 }
 
 #searchDiv {
@@ -45,20 +45,30 @@ table td {
 	text-align : center;
 	padding : 20px;
 }
-
-#searchInput {
+.inputDiv {
+	font-size : 20px;
+	text-align : right;
+	padding : 20px;
+}
+.searchDiv {
+	font-size : 20px;
+	text-align : center;
+	padding : 20px;
+}
+.inputBtn {
 	background : #b0c364;
 	border : none;
 	border-right : 0px;
 	border-left : 0px;
 	border-top : 0px;
 	border-botton : 0px;
+	color:white;
 }
+
 </style>
 </head>
 <body>
 <%
-	MemberVO m = (MemberVO)session.getAttribute("member");
 	ArrayList<NoticeVO> list = (ArrayList<NoticeVO>)request.getAttribute("list");
 %>
 <header id="top_section">
@@ -70,8 +80,9 @@ table td {
 	if(mvo != null && mvo.getUserNum() < 1000){
 	%>0
  
-	<div class="float-right write">
-  <input type="button"  id="writeBtn" onclick="location.href='notice/noticeWriteForm'" value="글쓰기">
+	<div class="inputDiv">
+  		<input type="button" class="inputBtn"  value="글쓰기"
+  		onclick="location.href='notice/noticeWriteForm.jsp'">
   </div>
   <%} %>
   
@@ -87,8 +98,8 @@ table td {
 		<h1 align="center">공지사항</h1>
 		<table id="noticeList">
 			<tr height="45">
-				<td class="header" style="width:8.33%">글번호</td>
-				<td class="header" style="width:65%">제목</td>
+				<td class="header" style="width:10%">글번호</td>
+				<td class="header" style="width:63%">제목</td>
 				<td class="header" style="width:11.67%">작성자</td>
 				<td class="header" style="width:15%">작성일</td>
 			</tr>
@@ -96,7 +107,9 @@ table td {
 			<c:forEach var="noticeVO" items="${ list }">
 			<tr>
 				<td width="10%">${number }</td>
-				<td width="52%"><a href="/detailNotice.do?noticeNum=${noticeVO.noticeNum}&number=${number}">${noticeVO.noticeTitle }</a></td>
+				<td width="52%">
+				<a href="/detailNotice.do?noticeNum=${noticeVO.noticeNum}
+				&number=${number}">${noticeVO.noticeTitle }</a></td>
 				<td width="16%">${ noticeVO.noticeWriter }</td>
 				<td width="19%">${ noticeVO.noticeDate }</td>
 				<c:set var="number" value="${number-1 }" />
@@ -104,10 +117,10 @@ table td {
 			</c:forEach>
 		</table>
 		
-	<div id="searchDiv">
+	<div class="searchDiv">
 		<form action="/searchNotice.do" method="get">
 			<input type="text" name="keyword"/>
-			<input type="submit" value="검색" id="searchInput"/>
+			<input type="submit" value="검색" class="inputBtn"/>
 		</form>
 	</div>
 	
