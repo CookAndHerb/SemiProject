@@ -169,7 +169,6 @@ public class MemberDAO {
 		}
 		return userPw;
 	}
-	
 	public int checkNick(Connection conn, String userNickname) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -190,5 +189,29 @@ public class MemberDAO {
 				JDBCTemplate.close(pstmt);
 			}
 			return -1; // 데이터베이스 오류
+	}
+	
+	public int JoinIdCheck(Connection conn, String userId) {
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = "SELECT * FROM MEMBER WHERE USER_ID=? AND USER_DEL='N'";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			if(!rset.next()) {
+				result = 1;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 }

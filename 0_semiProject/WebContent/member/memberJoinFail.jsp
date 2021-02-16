@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert("회원가입 실패");
-		location.replace('/index.jsp');
+		history.back(-1);
 	</script>
 </body>
 </html>

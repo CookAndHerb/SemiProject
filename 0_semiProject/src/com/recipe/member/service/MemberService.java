@@ -85,6 +85,13 @@ public class MemberService {
 	public int checkNick(String userNickname) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = mDAO.checkNick(conn, userNickname);
+		return result;
+	}
+
+	public int JoinIdCheck(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDAO.JoinIdCheck(conn, userId);
+
 		JDBCTemplate.close(conn);
 		return result;
 	}
