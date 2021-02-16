@@ -316,7 +316,7 @@
 		}
 		$.ajax({
 			type: 'get', 
-			url: '/MemberJoinEmailCheck.do',
+			url: '/memberFindPwEmail.do',
 			async : false,
 			data: {userEmail: userEmail},
 			success: function(data){ 

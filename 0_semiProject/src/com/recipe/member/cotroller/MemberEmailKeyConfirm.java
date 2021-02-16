@@ -35,7 +35,6 @@ public class MemberEmailKeyConfirm extends HttpServlet {
         JSONObject object = new JSONObject();
         if(authenticationKey.equals(authenticationUser)){
         	object.put("ok", "ok");
-            //return;
         }else {
         	object.put("ok", "");
         }

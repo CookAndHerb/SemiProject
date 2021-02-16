@@ -52,7 +52,7 @@
 	    
 <!-- content 부분-->
  <section class="container p-5 col-sm-4">
- 			<div class="login">PW 찾기</div>
+ 			<div class="login" >PW 찾기</div>
             <hr>
             <form action="/memberFindPw.do" method="post">
                 <div class="form-inline">
@@ -60,6 +60,7 @@
                 </div>
                 <br>
                 <div class="form-inline">
+                <input type="hidden" name="findpw" value="findpw" />
                   <input type="email" class="form-control col-9" placeholder="이메일을 입력하세요" id="userEmail" name="userEmail" required>
                   <input type="button" class="btn btn-light btn-block col-3" id="keyBtn" value="인증번호" ><br><br>
                   <p id="waitmsg">전송완료 창이 뜰 때까지 잠시만 기다려주세요.</p>
