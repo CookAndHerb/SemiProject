@@ -40,6 +40,10 @@
     	background-color:  #b0c364;
     	border-color:  #b0c364;
     }
+    .text{
+		color:  #b0c364;
+		text-align: center;
+    }
     
 }
 </style>
@@ -49,7 +53,8 @@
 <header id="top_section">
 		<%@ include file="/template/top.jsp" %>
 </header>
-<h2 class="board_title" align="center" style="margin-top: 20px;">Cook Q&A</h2>
+<h2 class="board_title" align="center" style="margin: 30px 0 0 0; padding-bottom: 0px;">Cook Q&A</h2>
+<p class="text" style="margin-bottom: 30px">Cook Q&A 게시판 입니다</p> 
 <div class="container">
 <div style ="margin: 15px 25px 15px 0px;" align="right" >
 	<button onclick="location.href ='/aBoard/aBoardWriteForm.jsp'" class="btn btn-success" id="write_btn">글쓰기</button>
