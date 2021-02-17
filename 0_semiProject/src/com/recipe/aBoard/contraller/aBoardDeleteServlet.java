@@ -23,12 +23,11 @@ public class aBoardDeleteServlet extends HttpServlet {
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		request.setCharacterEncoding("UTF-8");
-
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		String password =  request.getParameter("password");
 		String pass =  request.getParameter("pass");
 
-		
 		if(pass.equals(password)){
 			int result = new aBoardService().deleteBoard(num);
 			RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardDelete.jsp");

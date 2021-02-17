@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	* {
+	    margin: 0;
+	    padding: 0;
+	    float:none;
+	}
+	#pw_btn{
+		background-color:  #b0c364;
+	 	border-color:  #b0c364;	
+	}
+</style>
 <body>
 <form action = "/mBoardDelete.do" method="post" class="form-inline" role="form">
 	<div class="container"  style='width:1000px; height:500px;'>

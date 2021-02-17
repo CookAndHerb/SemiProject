@@ -35,10 +35,7 @@ public class aBoardReWriteRef extends HttpServlet {
 		request.setAttribute("ref", ref);
 		request.setAttribute("reStep", reStep);
 		request.setAttribute("reLevel", reLevel);
-		System.out.println(ref);
-		System.out.println(reStep);
-		System.out.println(reLevel);
-		System.out.println("--------------------");
+		
 		RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardReWriteForm.jsp");
 		dis.forward(request ,response);
 		

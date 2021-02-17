@@ -404,7 +404,6 @@
     }
 	
 </script>
-
 	<footer>
 		<%@ include file="/template/bottom.jsp"%>
 	</footer>

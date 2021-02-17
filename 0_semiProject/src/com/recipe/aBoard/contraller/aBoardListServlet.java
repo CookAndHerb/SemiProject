@@ -28,25 +28,16 @@ public class aBoardListServlet extends HttpServlet {
 		execute(request, response);
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		//화면에 보여질 게시글의 개수를 지정 
-		int pageSize=10;
-				
-		//페이지 링크를 클릭한 번호 --> 현재 페이지 
 		String pageNum = request.getParameter("pageNum");
+		int pageSize=10;
 		
 		if(pageNum==null){
 			pageNum="1";
 		}
-		// 연산용 현재 페이지
 		int currentPage = Integer.parseInt(pageNum);
-		
-		// 해당 페이지에서 시작할 레코드
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
-		
-		//전체 게시글의 갯수 
 		int count = 0;
-		//jsp페이지 내에서 보여질 넘버링 숫자값을 저장하는 변수
 		int number = 0;
 		
 		aBoardService se = new aBoardService();
@@ -55,11 +46,11 @@ public class aBoardListServlet extends HttpServlet {
 		ArrayList<aBoardVO> list = se.getAllBoard(startRow, endRow);
 		number = count - (currentPage - 1) * pageSize;
 		
-//		System.out.println("startRow: "+startRow);
-//		System.out.println("endRow: "+endRow);
-//		System.out.println("number: "+number);
-//		System.out.println("list : "+list.size());
-//		System.out.println("---------------------------");
+		System.out.println("startRow: "+startRow);
+		System.out.println("endRow: "+endRow);
+		System.out.println("number: "+number);
+		System.out.println("list : "+list.size());
+		System.out.println("---------------------------");
 		
 		request.setAttribute("list", list);
 		request.setAttribute("number", number);

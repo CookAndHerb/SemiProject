@@ -51,14 +51,12 @@ public class mBoardWrite extends HttpServlet {
 		
 		
 		// 작성 시간
-				java.sql.Date regDate = new java.sql.Date(new java.util.Date().getTime());
+				
 				mBoardVO boardVO = new mBoardVO();
 				
 				boardVO.setBoardTitle(request.getParameter("boardTitle"));
 				boardVO.setBoardWriter(request.getParameter("boardWriter"));
 				boardVO.setBoardContent(request.getParameter("boardContent"));
-				boardVO.setBoardDate(regDate);
-				boardVO.setBoardHit(1);
 				
 				mBoardService ms = new mBoardService();
 				int result = ms.insertBoard(boardVO);
@@ -67,7 +65,7 @@ public class mBoardWrite extends HttpServlet {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/mBoardList.do"); //서블릿 부분 리스트로 가게끔
 					dispatcher.forward(request, response);
 				} else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/mBoard/boardWriteFail.jsp");//작성 실패할시 jsp페이지로
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/mBoard/mBoard/boardWriteFail.jsp");//작성 실패할시 jsp페이지로
 					dispatcher.forward(request, response);
 		}
 

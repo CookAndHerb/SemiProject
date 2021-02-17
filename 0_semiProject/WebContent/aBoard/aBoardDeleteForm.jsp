@@ -25,7 +25,10 @@
 		background-color:  #b0c364;
     	border-color:  #b0c364;
 	}
-	
+	 .text{
+		color:  #b0c364;
+		text-align: center;
+    }
 </style>
 </head>
 <body>
@@ -34,7 +37,8 @@
 </header>
 <form action = "/aBoardDelete.do" method="post" class="form-inline" role="form">
 	<div class="container"  style='width:1000px; height:500px;'>
-	<h2 class="board_title" align="center" style="margin-top:40px;">Cook Q&A</h2>
+	<h2 class="board_title" align="center" style="margin: 50px 0 0 0; padding-bottom: 0px;">Cook Q&A</h2>
+	<p class="text" style="margin: 0px">Cook Q&A 게시판 입니다</p> 
 		<div class="form-group">
 	    	<label for="pwd" id="pwFont" class="px-4">Password: </label>
 	    	<input type="password" class="form-control col-5" name="pass" placeholder="비밀번호를 입력하세요" id="pwd">

@@ -25,16 +25,13 @@ public class aBoardInfoServlet extends HttpServlet {
 		execute(request, response);
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
-		
 		int num = Integer.parseInt(request.getParameter("pageNum").trim());
 		
 		aBoardService se = new aBoardService();
 		aBoardVO vo = se.getOneBoard(num);
 		
 		request.setAttribute("vo", vo);
-		
 		RequestDispatcher dis = request.getRequestDispatcher("/aBoard/aBoardInfo.jsp");
 		dis.forward(request ,response);
 	}

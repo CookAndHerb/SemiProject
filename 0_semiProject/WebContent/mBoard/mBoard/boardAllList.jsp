@@ -164,13 +164,19 @@ function WriteForm(){
     }
     .subject{
     	text-align: center;
+    	margin: 30px 0 0 0;
     }
     .text{
 		color:  #b0c364;
 		text-align: center;
     }
-    table{
-    	margin-left : 120px;
+    #write_btn{
+    	background-color:  #b0c364;
+    	border-color:  #b0c364;
+    }
+    #btn2{
+    	background-color:  #b0c364;
+    	border-color:  #b0c364;
     }
 }
 </style>
@@ -185,22 +191,16 @@ function WriteForm(){
 <% MemberVO mvo = (MemberVO)session.getAttribute("member"); 
 	System.out.println(mvo);  %>
 <br>
-  <h2 class="subject">COOK&TALK</h2>
-  <p class="text">COOK&TALK 자유게시판 입니다</p> 
-  
- 
+  <h2 class="subject">Cook & Talk</h2>
+  <p class="text">Cook & Talk 자유게시판 입니다</p> 
+<div class="container">
+  	<div style ="margin: 15px 25px 15px 0px;" align="right" >
+	    <c:if test="${not empty member}"> <!-- 로그인 했을 경우 글쓰기 버튼 보여줌 -->
+	 		<button onclick="location.href ='/mBoard/mBoard/WriteForm.jsp'" class="btn btn-success" id="write_btn">글작성</button> 
+		</c:if>
+	</div>
 	
-	<div class="form-row">
-
-         <c:if test="${not empty member}"> <!-- 로그인 했을 경우 글쓰기 버튼 보여줌 -->
- <button onclick="location.href ='/mBoard/mBoard/WriteForm.jsp'">글작성</button> 
-	</c:if>  		
-          
-  
-    </div>
-    
-    
-	<table class="table table-hover col-sm-10" >
+	<table class="table table-hover" style="margin-top: 20px;">
 	<thead>
 		<tr>
 			<th>글번호</th>
@@ -213,7 +213,6 @@ function WriteForm(){
 		<tbody>
 		<c:set var="number" value="${number}" />
 		<c:forEach var="v" items="${list}">
-			
 			<tr>
 				<td>${v.boardNUM}</td>
 				<td>
@@ -264,7 +263,7 @@ function WriteForm(){
 			</c:if>
 		</c:if>
 	</p> --%>
-	
+</div>
 	<div class="container">
 	<c:if test="${count>0}">
 			<!-- 카운터링 숫자를 얼마까지 보여줄건지 결정 -->
@@ -340,18 +339,21 @@ function WriteForm(){
 		</c:if>
 	</div>
 	
-	<form name="searchForm" id="searchForm" method="get">
-					<input type="hidden" name="page" id="page" value="1">
-					<input type="hidden" name="codeSeq" id="codeSeq" value="48">
-					<fieldset class="search_area" style="text-align:center">
-						<select name="searchKey" id="searchKey" style="padding:1px">
-							<option value="Title">제목</option>
-							<option value="writerNick">닉네임</option>							<option value="bContent">내용</option>
-						</select>
-<input type="text" name="searchVal" id="searchVal" style="width:150px; padding:2px; border:1px solid #abadb3" value="">
-<button type="button" class="btn btn-outline-success" value="검색" style="border:none; 
-vertical-align:middle" onclick="searchChk();">검색</button> <!-- 마우스 올리면 색생 나타남 -->
-
+	<form name="searchForm" id="searchForm" method="get" class="form-inline justify-content-center" style="margin:40px 0">
+		<input type="hidden" name="page" id="page" value="1">
+		<input type="hidden" name="codeSeq" id="codeSeq" value="48">
+		<div class="input-group mb-3">
+			<select name="searchKey" id="searchKey" class="form-control col-3">
+				<option value="Title">제목</option>
+				<option value="writerNick">닉네임</option>
+				<option value="bContent">내용</option>
+			</select>
+		<input type="text" name="searchVal" id="searchVal" class="form-control col-7" role="form" placeholder="Search" value="">
+		 <div class="input-group-append">
+			<button type="button" id="btn2" class="btn btn btn-success" value="검색" onclick="searchChk();">검색</button> <!-- 마우스 올리면 색생 나타남 -->
+		</div>
+	</div>
+</form>
 <!-- 하단 -->
 	<footer>
 		<%@ include file="/template/bottom.jsp" %>

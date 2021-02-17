@@ -47,8 +47,12 @@
 	}
 	.btnGroup{
 		padding: 20px 0 40px 0;
-		margin-left: 70%;
+		margin-left: 75%;
 	}
+	.text{
+		color:  #b0c364;
+		text-align: center;
+    }
 	#btn1{
 		background-color:  #b0c364;
     	border-color:  #b0c364;
@@ -76,14 +80,16 @@
 
 
 <div class="container">
-<h2 class="board_title" align="center" style="margin-top: 20px;">Cook Q&A</h2>
+<h2 class="board_title" align="center" style="margin: 30px 0 0 0; padding-bottom: 0px;">Cook Q&A</h2>
+<p class="text" style="margin-bottom: 30px">Cook Q&A 게시판 입니다</p> 
 	<div id="board_View" style="width:100%">
 		<div class="board_view_subject" style="border-top: 1px solid #222;">
 			<p class="board_view_subject_left">${vo.boardTitle}</p>
 			<p class="board_view_subject_right">${vo.boardDate}</p>
+			<p class="board_view_subject_right">조회수 ${vo.readCount}&nbsp;&nbsp;|&nbsp;&nbsp;</p>
 		</div>
-		<div class="board_view_content">
-				<p class>${vo.boardContent}</p>
+		<div class="board_view_content pl-3">
+				<p>${vo.boardContent}</p>
 		</div>
 	</div>
 	<div class="btnGroup">
