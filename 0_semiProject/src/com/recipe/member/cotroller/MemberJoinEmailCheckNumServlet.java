@@ -25,7 +25,7 @@ public class MemberJoinEmailCheckNumServlet extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int result = 0;
 		
-		String AuthenticationKey = (String) request.getSession().getAttribute("AuthenticationKey");
+		String AuthenticationKey = (String) request.getSession().getAttribute("authenticationKey");
 		String userEmailNum = request.getParameter("userEmailNum");
 		System.out.println("authenticationKey : "+AuthenticationKey);
         System.out.println("userEmailNum : "+userEmailNum);
