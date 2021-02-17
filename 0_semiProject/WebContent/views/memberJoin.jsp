@@ -338,9 +338,11 @@
 			success: function(result){
 				if(result == 1){ 
 					alert("인증번호가 맞지 않습니다");
+					$('#emailNumCheckMessage').html('');
 					$("#join_btn").attr("disabled", "disabled");
 				}else{
 					alert("인증번호가 확인되었습니다.");
+					$('#emailNumCheckMessage').html('');
 					$("#join_btn").removeAttr("disabled");
 				}
 			}
