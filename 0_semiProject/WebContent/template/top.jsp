@@ -63,7 +63,7 @@
 
         <!-- Logo Area -->
         <div class="logo-area">
-            <a href="/index.jsp"><img src="/resources/img/core-img/toplogo.jpg" style="width:40%" alt=""></a>
+            <a href="/index.jsp"><img src="/resources/img/core-img/toplogo1.jpg" style="width:35%" alt=""></a>
         </div>
 
         <!-- Navbar Area -->
